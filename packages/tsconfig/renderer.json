@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Renderer",
+  "references": [
+    {
+      "path": "./base.json"
+    },
+    {
+      "path": "@vue/tsconfig/tsconfig.web.json"
+    }
+  ],
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "#preload": ["../preload/src/index"],
+      "@/*": ["./src/*"]
+    },
+    "lib": ["ESNext", "dom", "dom.iterable"]
+  }
+}

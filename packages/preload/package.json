@@ -1,0 +1,19 @@
+{
+  "name": "preload",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite build",
+    "build": "vite build",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "electron": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.36",
+    "tsconfig": "workspace:*",
+    "eslint-config-custom": "workspace:*"
+  }
+}

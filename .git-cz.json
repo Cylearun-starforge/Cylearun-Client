@@ -1,0 +1,4 @@
+{
+  "disableEmoji": true,
+  "scopes": ["prelaod", "client", "renderer", "*"]
+}

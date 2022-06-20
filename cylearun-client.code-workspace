@@ -1,0 +1,66 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": "."
+    },
+    {
+      "name": "client main",
+      "path": "apps/client"
+    },
+    {
+      "name": "client preload",
+      "path": "packages/preload"
+    },
+    {
+      "name": "client renderer",
+      "path": "packages/renderer"
+    },
+    {
+      "name": "tsconfig",
+      "path": "packages/tsconfig"
+    },
+    {
+      "name": "eslint",
+      "path": "packages/eslint-config-custom"
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      ".code-workspace": "jsonc",
+      ".babelrc": "json",
+      ".eslintrc": "jsonc",
+      ".eslintrc*.json": "jsonc"
+    },
+    "search.exclude": {
+      "**/build": true,
+      "**/output": true,
+      "**/dist": true,
+      "**/yarn.lock": true,
+      "**/package-lock.json": true,
+      "**/*.log": true,
+      "**/*.pid": true,
+      "**/.git": true,
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/pnpm-lock.yaml": true
+    },
+    "editor.rulers": [80, 120],
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+      "**/.git": true,
+      "**/.svn": true,
+      "**/.hg": true,
+      "**/CVS": true,
+      "**/.DS_Store": true,
+      "**/tmp": true,
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/dist": true,
+      "**/.turbo": true,
+      "**/coverage": true
+    }
+  }
+}

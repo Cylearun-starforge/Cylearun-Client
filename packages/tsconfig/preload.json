@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Preload",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "baseUrl": ".",
+    "isolatedModules": false
+  }
+}
