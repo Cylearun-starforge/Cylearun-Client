@@ -14,7 +14,7 @@
     "baseUrl": ".",
     "paths": {
       "#preload": ["../preload/src/index"],
-      "@/*": ["./src/*"]
+      "@/*": ["../renderer/src/*"]
     },
     "lib": ["ESNext", "dom", "dom.iterable"]
   }
