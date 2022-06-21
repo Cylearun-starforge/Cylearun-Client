@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitest/config';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-
+import autoprefixer from 'autoprefixer';
 import { join } from 'path';
 
 const PACKAGE_ROOT = __dirname;
@@ -35,5 +35,14 @@ export default defineConfig({
   plugins: [vue(), vueJsx()],
   test: {
     environment: 'jsdom',
+  },
+  css: {
+    postcss: {
+      plugins: [
+        autoprefixer({
+          env: 'chrome102',
+        }),
+      ],
+    },
   },
 });
