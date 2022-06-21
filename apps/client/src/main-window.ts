@@ -3,10 +3,12 @@ import { BrowserWindow } from 'electron';
 export class MainWindow extends BrowserWindow {
   constructor(preload: string) {
     super({
-      width: 1920,
-      height: 1080,
+      width: 1440,
+      height: 990,
       maximizable: false,
-      minHeight: 1080,
+      minHeight: 768,
+      minWidth: 1280,
+      maxHeight: 1080,
       maxWidth: 1920,
       webPreferences: {
         contextIsolation: true,
