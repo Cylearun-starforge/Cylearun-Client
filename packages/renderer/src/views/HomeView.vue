@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import TheWelcome from '@/components/TheWelcome.vue';
+import { effect, ref } from 'vue';
+import Background from '@/components/home/background.vue';
+
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <background />
 </template>
+
+<style scoped>
+</style>
