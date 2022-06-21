@@ -65,10 +65,35 @@ body {
   background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: '汉仪细等线';
+  src: url('/fonts/汉仪细等线简.ttf');
+}
+
+@font-face {
+  font-family: '汉仪综艺体';
+  src: url('/fonts/汉仪综艺体简.ttf');
+}
+
+@font-face {
+  font-family: 'Marske';
+  src: url('/fonts/Marske.otf');
+}
+
+@font-face {
+  font-family: 'BureauAgency';
+  src: url('/fonts/BureauAgency.otf');
+}
+
+@font-face {
+  font-family: 'FZQiSTJW-M';
+  src: url('/fonts/FZQiSTJW-M.TTF');
 }
