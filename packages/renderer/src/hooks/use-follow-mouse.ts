@@ -1,6 +1,6 @@
 import { Ref } from 'vue';
 
-type FollowMouseConfig = {
+export type FollowMouseConfig = {
   base: {
     x: 'left' | 'right';
     y: 'top' | 'bottom';
