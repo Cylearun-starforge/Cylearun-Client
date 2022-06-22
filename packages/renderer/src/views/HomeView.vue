@@ -3,6 +3,7 @@ import Background from '@/components/home/background.vue';
 import ScrollInfo from '@/components/home/scroll-info.vue';
 import ButtonGroup from '@/components/home/button-group.vue';
 import LadderPanel from '@/components/home/ladder-panel.vue';
+import VersionTag from '@/components/home/version-tag.vue';
 </script>
 
 <template>
@@ -24,6 +25,7 @@ import LadderPanel from '@/components/home/ladder-panel.vue';
       </div>
     </div>
   </div>
+  <version-tag class="version-tag" />
 </template>
 
 <style scoped>
@@ -58,5 +60,11 @@ import LadderPanel from '@/components/home/ladder-panel.vue';
 
   right: 0;
   top: 3.80%;
+}
+
+.version-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
 }
 </style>
