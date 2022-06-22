@@ -2,12 +2,13 @@
 import Background from '@/components/home/background.vue';
 import ScrollInfo from '@/components/home/scroll-info.vue';
 import ButtonGroup from '@/components/home/button-group.vue';
+import LadderPanel from '@/components/home/ladder-panel.vue';
 </script>
 
 <template>
   <background />
-  <div class="col-separator flex">
-    <div class="left flex flex-col">
+  <div class="row flex">
+    <div class="col flex flex-col">
       <div class="top">
         <scroll-info />
       </div>
@@ -16,13 +17,17 @@ import ButtonGroup from '@/components/home/button-group.vue';
       </div>
 
     </div>
-    <div class="left flex flex-col">
+    <div class="col flex flex-col">
+      <div class="flex">
+        <ladder-panel />
+        <img src="/home/buttons/button_logo.png" class="logo-button">
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.col-separator {
+.row {
   position: absolute;
   top: 0;
   left: 0;
@@ -33,18 +38,25 @@ import ButtonGroup from '@/components/home/button-group.vue';
 
 }
 
-.left {
+.col {
   height: 100%;
   width: 100%;
 }
 
-.left>.top {
+.col>.top {
   height: 35%;
   width: 100%;
 }
 
-.left>.bottom {
+.col>.bottom {
   width: 100%;
   height: 64.3%;
+}
+
+.logo-button {
+  position: absolute;
+
+  right: 0;
+  top: 3.80%;
 }
 </style>
