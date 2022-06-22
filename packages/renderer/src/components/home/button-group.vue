@@ -1,10 +1,14 @@
+<script setup lang="ts">
+import MaskButton from '@/components/mask-button.vue';
+const log = e => console.log('button', e);
+</script>
 <template>
     <div class="container flex">
         <div class="col col-1 flex flex-col">
-            <div class="campaign">
+            <mask-button mask-file="/home/buttons/campaign_mask.png" class="campaign" @click="log">
                 <div class="zh">战役</div>
                 <div class="en">CAMPAIGN</div>
-            </div>
+            </mask-button>
         </div>
         <div class="col col-2 flex flex-col">
             <div class="conquer">
@@ -67,15 +71,20 @@
     line-height: 1;
 }
 
-.container div {
+.container div,
+.container button {
     font-size: 40px;
+    color: white;
 }
 
 .campaign {
     height: 56.8%;
     top: 11.37%;
+    background-color: transparent;
+    border-width: 0;
     background-image: url('/home/buttons/campaign.png');
     background-size: 100% 100%;
+
 }
 
 .campaign .zh {
@@ -184,6 +193,6 @@
 }
 
 .container>.col>div {
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 </style>
