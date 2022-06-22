@@ -138,6 +138,7 @@
 
 .col-3-fake {
     height: 21.1%;
+    cursor: initial !important;
 }
 
 .load-mission {
