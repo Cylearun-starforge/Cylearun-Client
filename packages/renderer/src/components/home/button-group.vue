@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import MaskButton from '@/components/mask-button.vue';
+import AlphaButton from '@/components/alpha-button.vue';
 const log = e => console.log('button', e);
 </script>
 <template>
@@ -11,10 +12,13 @@ const log = e => console.log('button', e);
             </mask-button>
         </div>
         <div class="col col-2 flex flex-col">
-            <div class="conquer">
+            <alpha-button background="/home/buttons/conquer.png" class="conquer">
                 <div class="zh">征服之旅</div>
                 <div class="en">CONQUER</div>
-            </div>
+            </alpha-button>
+            <!-- <div class="conquer">
+
+            </div> -->
             <div class="skirmish">
                 <div class="zh">自定义游戏</div>
                 <div class="en">SKIRMISH</div>
@@ -104,7 +108,7 @@ const log = e => console.log('button', e);
 .conquer {
     height: 49.68%;
 
-    background-image: url('/home/buttons/conquer.png');
+    /* background-image: url('/home/buttons/conquer.png'); */
     background-size: 100% 100%;
 
 }

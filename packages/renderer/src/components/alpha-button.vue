@@ -1,10 +1,10 @@
 <script setup lang="ts">
 
-import { ref, reactive, effect } from 'vue';
-import { getElementPosition } from 'src/util';
+import { ref, reactive, effect, CSSProperties, computed } from 'vue';
+import { getElementPosition } from '@/util/getElementPosition';
 const emits = defineEmits(['click']);
 const props = defineProps({
-    maskFile: {
+    background: {
         type: String,
         required: true
     },
@@ -13,6 +13,14 @@ const props = defineProps({
 const state = reactive({
     hover: false,
 })
+
+const buttonStyle = computed<CSSProperties>(() => ({
+    cursor: state.hover ? 'pointer' : 'initial',
+    backgroundImage: `url("${props.background}")`,
+    backgroundColor: 'transparent',
+    borderWidth: 0
+}))
+
 const canvas = document.createElement('canvas');
 const buttonRef = ref<HTMLButtonElement>();
 const onClick = (e: MouseEvent) => {
@@ -23,17 +31,17 @@ const onClick = (e: MouseEvent) => {
     emits('click', e)
 }
 const image = new Image();
-image.src = props.maskFile
-image.onload = setMask;
+image.src = props.background;
+image.onload = setAlpha;
 
 effect(() => {
-    window.addEventListener('resize', setMask);
+    window.addEventListener('resize', setAlpha);
     return () => {
-        window.removeEventListener('resize', setMask);
+        window.removeEventListener('resize', setAlpha);
     }
 })
 
-function setMask() {
+function setAlpha() {
     canvas.width = buttonRef.value.clientWidth;
     canvas.height = buttonRef.value.clientHeight;
     const ctx = canvas.getContext('2d');
@@ -53,22 +61,20 @@ function setMask() {
 
 const onPixel = (x: number, y: number) => {
     const p = getElementPosition(buttonRef.value);
-    console.log('element', p);
-    console.log('hover', x, y)
     const pixel = canvas.getContext('2d').getImageData(x - p.x, y - p.y, 1, 1);
-    if (pixel.data[0] === 0 && pixel.data[1] === 0 && pixel.data[2] === 0) {
+    if (pixel.data[3] === 0) {
         return false;
     }
     return true;
 };
+
 
 </script>
 
 
 <template>
     <button ref="buttonRef" @mouseleave="state.hover = false"
-        @mousemove="e => { state.hover = onPixel(e.clientX, e.clientY) }" @click="onClick"
-        :style="{ cursor: state.hover ? 'pointer' : 'initial' }">
+        @mousemove="e => { state.hover = onPixel(e.clientX, e.clientY) }" @click="onClick" :style="buttonStyle">
         <slot></slot>
     </button>
 </template>
