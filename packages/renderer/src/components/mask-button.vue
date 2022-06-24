@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { ref, reactive, effect } from 'vue';
-import { getElementPosition } from 'src/util';
+import { getElementPosition } from '@/util/getElementPosition';
 const emits = defineEmits(['click']);
 const props = defineProps({
     maskFile: {
