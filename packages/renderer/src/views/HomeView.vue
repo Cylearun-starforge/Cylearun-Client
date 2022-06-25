@@ -4,6 +4,7 @@ import ScrollInfo from '@/components/home/scroll-info.vue';
 import ButtonGroup from '@/components/home/button-group.vue';
 import LadderPanel from '@/components/home/ladder-panel.vue';
 import VersionTag from '@/components/home/version-tag.vue';
+import UserInfo from '@/components/home/user/user-info.vue';
 </script>
 
 <template>
@@ -23,6 +24,7 @@ import VersionTag from '@/components/home/version-tag.vue';
         <ladder-panel />
         <img src="/home/buttons/button_logo.png" class="logo-button">
       </div>
+      <user-info class="user-info" username="用户名test" />
     </div>
   </div>
   <version-tag class="version-tag" />
@@ -66,5 +68,10 @@ import VersionTag from '@/components/home/version-tag.vue';
   position: absolute;
   bottom: 12px;
   left: 12px;
+}
+
+.user-info {
+  width: 65%;
+  height: 25%;
 }
 </style>
