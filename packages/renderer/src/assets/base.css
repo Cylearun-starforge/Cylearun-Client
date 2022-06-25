@@ -6,6 +6,16 @@
   position: relative;
   font-weight: normal;
   user-select: none;
+  font-family: '汉仪综艺体', Marske;
+  line-height: 1;
+}
+
+.zh {
+  font-family: '汉仪综艺体';
+}
+
+.en {
+  font-family: 'Marske';
 }
 
 body {
