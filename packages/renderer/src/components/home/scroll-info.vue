@@ -107,7 +107,7 @@ let offset = computed(() => {
 
 .dots-box {
     position: absolute;
-    bottom: 91px;
+    bottom: 48px;
     width: 30%;
     left: 50%;
     transform: translateX(-50%);

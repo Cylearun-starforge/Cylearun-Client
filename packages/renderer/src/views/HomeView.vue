@@ -5,6 +5,7 @@ import ButtonGroup from '@/components/home/button-group.vue';
 import LadderPanel from '@/components/home/ladder-panel.vue';
 import VersionTag from '@/components/home/version-tag.vue';
 import UserInfo from '@/components/home/user/user-info.vue';
+import AlphaButton from '@/components/alpha-button.vue';
 </script>
 
 <template>
@@ -24,7 +25,17 @@ import UserInfo from '@/components/home/user/user-info.vue';
         <ladder-panel />
         <img src="/home/buttons/button_logo.png" class="logo-button">
       </div>
+      <div class="fake-padding-block"></div>
+      <alpha-button background="/home/buttons/options.png" class="options-button">
+        <div class="zh">游戏设置</div>
+        <div class="en">OPTIONS</div>
+      </alpha-button>
       <user-info class="user-info" username="用户名test" />
+      <alpha-button background="/home/buttons/exit.png" class="exit-button">
+        <div class="zh">退出游戏</div>
+        <div class="en">EXIT</div>
+
+      </alpha-button>
     </div>
   </div>
   <version-tag class="version-tag" />
@@ -70,8 +81,63 @@ import UserInfo from '@/components/home/user/user-info.vue';
   left: 12px;
 }
 
+.fake-padding-block {
+  height: 50px;
+}
+
+.options-button {
+  width: 33.23%;
+  height: 11.48%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 22px;
+  align-self: flex-end;
+  margin-right: 116px;
+}
+
+
+
+.options-button>.zh {
+  color: white;
+}
+
+.options-button>.en {
+  color: white;
+}
+
 .user-info {
-  width: 65%;
   height: 25%;
+  align-self: flex-end;
+}
+
+.exit-button {
+  width: 33.23%;
+  height: 11.48%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  font-size: 22px;
+  align-self: flex-end;
+  display: flex;
+  margin-right: 48px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.exit-button>.zh {
+  color: white;
+  width: 55%;
+  text-align: left;
+}
+
+.exit-button>.en {
+  color: white;
+  width: 55%;
+  text-align: left;
 }
 </style>
