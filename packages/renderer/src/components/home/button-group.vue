@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import MaskButton from '@/components/mask-button.vue';
 import AlphaButton from '@/components/alpha-button.vue';
-const log = e => console.log('button', e);
 </script>
 <template>
   <div class="container flex">
     <div class="col col-1 flex flex-col">
-      <mask-button mask-file="/home/buttons/campaign_mask.png" class="campaign" @click="log">
+      <mask-button mask-file="/home/buttons/campaign_mask.png" class="campaign">
         <div class="zh">战役</div>
         <div class="en">CAMPAIGN</div>
       </mask-button>
@@ -16,24 +15,22 @@ const log = e => console.log('button', e);
         <div class="zh">征服之旅</div>
         <div class="en">CONQUER</div>
       </alpha-button>
-      <!-- <div class="conquer">
 
-            </div> -->
-      <div class="skirmish">
+      <alpha-button background="/home/buttons/skirmish.png" class="skirmish">
         <div class="zh">自定义游戏</div>
         <div class="en">SKIRMISH</div>
-      </div>
+      </alpha-button>
     </div>
     <div class="col col-3 flex flex-col">
       <div class="col-3-fake"></div>
-      <div class="load-mission">
+      <alpha-button background="/home/buttons/load_mission.png" class="load-mission">
         <div class="zh">载入存档</div>
         <div class="en">LOADMISSION</div>
-      </div>
-      <div class="activity">
+      </alpha-button>
+      <alpha-button background="/home/buttons/difficult_activity.png" class="activity">
         <div class="zh">巅峰活动</div>
         <div class="en">DIFFICULT ACTIVITY</div>
-      </div>
+      </alpha-button>
     </div>
   </div>
 </template>
@@ -122,7 +119,7 @@ const log = e => console.log('button', e);
 .skirmish {
   height: 50.49%;
 
-  background-image: url('/home/buttons/skirmish.png');
+  /* background-image: url('/home/buttons/skirmish.png'); */
   background-size: 100% 100%;
 }
 
@@ -149,7 +146,7 @@ const log = e => console.log('button', e);
 .load-mission {
   height: 20.1%;
 
-  background-image: url('/home/buttons/load_mission.png');
+  /* background-image: url('/home/buttons/load_mission.png'); */
   background-size: 100% 100%;
 }
 
@@ -170,7 +167,7 @@ const log = e => console.log('button', e);
 .activity {
   height: 52.9%;
 
-  background-image: url('/home/buttons/difficult_activity.png');
+  /* background-image: url('/home/buttons/difficult_activity.png'); */
   background-size: 100% 100%;
 }
 

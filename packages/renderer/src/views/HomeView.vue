@@ -37,7 +37,7 @@ import AlphaButton from '@/components/alpha-button.vue';
       </div>
     </div>
   </div>
-  <img src="/home/buttons/button_logo.png" class="logo-button" />
+  <alpha-button background="/home/buttons/button_logo.png" class="logo-button"></alpha-button>
   <version-tag class="version-tag" />
 </template>
 
@@ -94,6 +94,8 @@ import AlphaButton from '@/components/alpha-button.vue';
 
   right: 0;
   top: 3.8%;
+  width: 190px;
+  height: 215px;
 }
 
 .version-tag {
