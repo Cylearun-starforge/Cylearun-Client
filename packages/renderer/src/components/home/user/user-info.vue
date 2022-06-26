@@ -29,10 +29,10 @@ const props = defineProps({
         {{ props.title ?? '<称号测试>' }}
       </div>
       <div class="image-box avatar-box">
-        <img src="/home/user/avatar.png" class="avatar" />
+        <img src="/home/user/avatar.png" class="avatar" draggable="false" />
       </div>
       <div class="image-box level-box">
-        <img src="/home/user/level.png" class="level" />
+        <img src="/home/user/level.png" class="level" draggable="false" />
       </div>
     </div>
     <alpha-button background="/home/user/info.png" class="logout-button">
