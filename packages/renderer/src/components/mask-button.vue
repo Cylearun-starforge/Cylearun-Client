@@ -51,8 +51,6 @@ function setMask() {
 
 const onPixel = (x: number, y: number) => {
   const p = getElementPosition(buttonRef.value);
-  console.log('element', p);
-  console.log('hover', x, y);
   const pixel = canvas.getContext('2d').getImageData(x - p.x, y - p.y, 1, 1);
   if (pixel.data[0] === 0 && pixel.data[1] === 0 && pixel.data[2] === 0) {
     return false;
