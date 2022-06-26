@@ -22,7 +22,7 @@
     "eslint-config-custom": "workspace:*",
     "eslint-plugin-vue": "^9.0.0",
     "jsdom": "latest",
-    "tsconfig": "workspace:*",
+    "config": "workspace:*",
     "vue-tsc": "^0.35.2"
   }
 }

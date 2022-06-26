@@ -17,8 +17,8 @@
       "path": "packages/renderer"
     },
     {
-      "name": "tsconfig",
-      "path": "packages/tsconfig"
+      "name": "config",
+      "path": "packages/config"
     },
     {
       "name": "eslint",
