@@ -3,47 +3,46 @@ import { effect, ref } from 'vue';
 import { useFollowMouse } from '@/hooks/use-follow-mouse';
 const backgroundImage = {
   ground: ref<HTMLImageElement>(),
-  cosmos: ref<HTMLImageElement>()
-}
+  cosmos: ref<HTMLImageElement>(),
+};
 
 const cosmosMove = useFollowMouse(backgroundImage.cosmos, {
   base: {
     x: 'left',
-    y: 'top'
+    y: 'top',
   },
   speed: {
     x: 0.2,
-    y: 0.2
+    y: 0.2,
   },
   maxMove: {
     left: 40,
     top: 40,
     right: 40,
-    bottom: 40
+    bottom: 40,
   },
 });
 
 const groundMove = useFollowMouse(backgroundImage.ground, {
   base: {
     x: 'left',
-    y: 'top'
+    y: 'top',
   },
   speed: {
     x: 0.1,
-    y: 0.1
+    y: 0.1,
   },
   maxMove: {
     left: 20,
     top: 20,
     right: 20,
-    bottom: 20
+    bottom: 20,
   },
   offset: {
     x: -20,
-    y: 20
-  }
+    y: 20,
+  },
 });
-
 
 effect(() => {
   window.addEventListener('mousemove', cosmosMove);
@@ -51,17 +50,24 @@ effect(() => {
   return () => {
     window.removeEventListener('mousemove', cosmosMove);
     window.removeEventListener('mousemove', groundMove);
-  }
-})
-
+  };
+});
 </script>
 
 <template>
   <div class="background-container">
-    <img :ref="backgroundImage.cosmos" class="background background-subface" draggable="false"
-      src="/home/background/background_subface.png" />
-    <img :ref="backgroundImage.ground" class="background background-ground" draggable="false"
-      src="/home/background/background_ground.png" />
+    <img
+      :ref="backgroundImage.cosmos"
+      class="background background-subface"
+      draggable="false"
+      src="/home/background/background_subface.png"
+    />
+    <img
+      :ref="backgroundImage.ground"
+      class="background background-ground"
+      draggable="false"
+      src="/home/background/background_ground.png"
+    />
     <img class="background" src="/home/background/background_top.png" draggable="false" />
   </div>
 </template>

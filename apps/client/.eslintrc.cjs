@@ -1,6 +1,6 @@
 /* eslint-env node */
-require("@rushstack/eslint-patch/modern-module-resolution");
+require('@rushstack/eslint-patch/modern-module-resolution');
 
 module.exports = {
-  extends: ["eslint-config-custom"],
+  extends: ['eslint-config-custom'],
 };

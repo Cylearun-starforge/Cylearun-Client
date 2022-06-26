@@ -1,80 +1,84 @@
 <script setup lang="ts">
-
 import { ref, reactive, effect, CSSProperties, computed } from 'vue';
 import { getElementPosition } from '@/util/getElementPosition';
 const emits = defineEmits(['click']);
 const props = defineProps({
-    background: {
-        type: String,
-        required: true
-    },
-})
+  background: {
+    type: String,
+    required: true,
+  },
+});
 
 const state = reactive({
-    hover: false,
-})
+  hover: false,
+});
 
 const buttonStyle = computed<CSSProperties>(() => ({
-    cursor: state.hover ? 'pointer' : 'initial',
-    backgroundImage: `url("${props.background}")`,
-    backgroundColor: 'transparent',
-    borderWidth: 0
-}))
+  cursor: state.hover ? 'pointer' : 'initial',
+  backgroundImage: `url("${props.background}")`,
+  backgroundColor: 'transparent',
+  borderWidth: 0,
+}));
 
 const canvas = document.createElement('canvas');
 const buttonRef = ref<HTMLButtonElement>();
 const onClick = (e: MouseEvent) => {
-    e.preventDefault();
-    if (!state.hover) {
-        return;
-    }
-    emits('click', e)
-}
+  e.preventDefault();
+  if (!state.hover) {
+    return;
+  }
+  emits('click', e);
+};
 const image = new Image();
 image.src = props.background;
 image.onload = setAlpha;
 
 effect(() => {
-    window.addEventListener('resize', setAlpha);
-    return () => {
-        window.removeEventListener('resize', setAlpha);
-    }
-})
+  window.addEventListener('resize', setAlpha);
+  return () => {
+    window.removeEventListener('resize', setAlpha);
+  };
+});
 
 function setAlpha() {
-    canvas.width = buttonRef.value.clientWidth;
-    canvas.height = buttonRef.value.clientHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(
-        image,
-        0,
-        0,
-        image.width,
-        image.height,
-        0,
-        0,
-        buttonRef.value.clientWidth,
-        buttonRef.value.clientHeight
-    );
+  canvas.width = buttonRef.value.clientWidth;
+  canvas.height = buttonRef.value.clientHeight;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(
+    image,
+    0,
+    0,
+    image.width,
+    image.height,
+    0,
+    0,
+    buttonRef.value.clientWidth,
+    buttonRef.value.clientHeight
+  );
 }
 
-
 const onPixel = (x: number, y: number) => {
-    const p = getElementPosition(buttonRef.value);
-    const pixel = canvas.getContext('2d').getImageData(x - p.x, y - p.y, 1, 1);
-    if (pixel.data[3] === 0) {
-        return false;
-    }
-    return true;
+  const p = getElementPosition(buttonRef.value);
+  const pixel = canvas.getContext('2d').getImageData(x - p.x, y - p.y, 1, 1);
+  if (pixel.data[3] === 0) {
+    return false;
+  }
+  return true;
 };
-
-
 </script>
 
-
 <template>
-    <button ref="buttonRef" @mouseleave="state.hover = false"
-        @mousemove="e => { state.hover = onPixel(e.clientX, e.clientY) }" @click="onClick" :style="buttonStyle">
-        <slot></slot>
-    </button>
+  <button
+    ref="buttonRef"
+    @mouseleave="state.hover = false"
+    @mousemove="
+      e => {
+        state.hover = onPixel(e.clientX, e.clientY);
+      }
+    "
+    @click="onClick"
+    :style="buttonStyle"
+  >
+    <slot></slot>
+  </button>
 </template>

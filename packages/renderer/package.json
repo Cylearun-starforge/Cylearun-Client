@@ -6,7 +6,7 @@
     "build": "vite build",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../../.gitignore"
   },
   "dependencies": {
     "pinia": "^2.0.14",
@@ -22,6 +22,7 @@
     "eslint-config-custom": "workspace:*",
     "eslint-plugin-vue": "^9.0.0",
     "jsdom": "latest",
+    "eslint": "^8.18.0",
     "config": "workspace:*",
     "vue-tsc": "^0.35.2"
   }

@@ -18,12 +18,11 @@ import AlphaButton from '@/components/alpha-button.vue';
       <div class="bottom">
         <button-group />
       </div>
-
     </div>
     <div class="col flex flex-col">
       <div class="flex">
         <ladder-panel />
-        <img src="/home/buttons/button_logo.png" class="logo-button">
+        <img src="/home/buttons/button_logo.png" class="logo-button" />
       </div>
       <div class="fake-padding-block"></div>
       <alpha-button background="/home/buttons/options.png" class="options-button">
@@ -34,7 +33,6 @@ import AlphaButton from '@/components/alpha-button.vue';
       <alpha-button background="/home/buttons/exit.png" class="exit-button">
         <div class="zh">退出游戏</div>
         <div class="en">EXIT</div>
-
       </alpha-button>
     </div>
   </div>
@@ -50,7 +48,6 @@ import AlphaButton from '@/components/alpha-button.vue';
   height: 100vh;
   gap: 12px;
   padding: 12px;
-
 }
 
 .col {
@@ -58,12 +55,12 @@ import AlphaButton from '@/components/alpha-button.vue';
   width: 100%;
 }
 
-.col>.top {
+.col > .top {
   height: 35%;
   width: 100%;
 }
 
-.col>.bottom {
+.col > .bottom {
   width: 100%;
   height: 64.3%;
 }
@@ -72,7 +69,7 @@ import AlphaButton from '@/components/alpha-button.vue';
   position: absolute;
 
   right: 0;
-  top: 3.80%;
+  top: 3.8%;
 }
 
 .version-tag {
@@ -99,13 +96,11 @@ import AlphaButton from '@/components/alpha-button.vue';
   margin-right: 116px;
 }
 
-
-
-.options-button>.zh {
+.options-button > .zh {
   color: white;
 }
 
-.options-button>.en {
+.options-button > .en {
   color: white;
 }
 
@@ -129,13 +124,13 @@ import AlphaButton from '@/components/alpha-button.vue';
   align-items: flex-end;
 }
 
-.exit-button>.zh {
+.exit-button > .zh {
   color: white;
   width: 55%;
   text-align: left;
 }
 
-.exit-button>.en {
+.exit-button > .en {
   color: white;
   width: 55%;
   text-align: left;
