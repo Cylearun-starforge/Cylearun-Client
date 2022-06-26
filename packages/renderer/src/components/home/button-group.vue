@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import MaskButton from '@/components/mask-button.vue';
 import AlphaButton from '@/components/alpha-button.vue';
+import { RouterLink } from 'vue-router';
 </script>
 <template>
   <div class="container flex">
     <div class="col col-1 flex flex-col">
-      <mask-button mask-file="/home/buttons/campaign_mask.png" class="campaign">
-        <div class="zh">战役</div>
-        <div class="en">CAMPAIGN</div>
-      </mask-button>
+      <alpha-button background="/home/buttons/campaign.png" class="campaign">
+        <router-link to="/campaign">
+          <div class="zh">战役</div>
+          <div class="en">CAMPAIGN</div>
+        </router-link>
+      </alpha-button>
     </div>
     <div class="col col-2 flex flex-col">
       <alpha-button background="/home/buttons/conquer.png" class="conquer">
@@ -78,8 +81,17 @@ import AlphaButton from '@/components/alpha-button.vue';
   top: 11.37%;
   background-color: transparent;
   border-width: 0;
-  background-image: url('/home/buttons/campaign.png');
+  /* background-image: url('/home/buttons/campaign.png'); */
   background-size: 100% 100%;
+}
+
+/* Style for vue-router link element */
+.campaign > a {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .campaign .zh {

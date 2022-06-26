@@ -1,7 +1,8 @@
+<script setup lang="ts">
+import CampaignBackground from '@/components/campaign/campaign-background.vue';
+</script>
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <campaign-background />
 </template>
 
 <style>

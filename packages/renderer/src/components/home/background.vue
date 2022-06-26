@@ -68,7 +68,7 @@ effect(() => {
       draggable="false"
       src="/home/background/background_ground.png"
     />
-    <img class="background" src="/home/background/background_top.png" draggable="false" />
+    <img class="background" src="/background_top.png" draggable="false" />
   </div>
 </template>
 
