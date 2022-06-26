@@ -61,6 +61,9 @@
       "**/dist": true,
       "**/.turbo": true,
       "**/coverage": true
+    },
+    "[vue]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
   }
 }
