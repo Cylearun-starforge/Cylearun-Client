@@ -30,7 +30,10 @@ export default defineConfig({
       input: join(PACKAGE_ROOT, 'index.html'),
     },
     emptyOutDir: true,
-    brotliSize: false,
+    reportCompressedSize: true,
+  },
+  define: {
+    __DEV__: process.env.MODE !== 'production',
   },
   plugins: [vue(), vueJsx()],
   test: {

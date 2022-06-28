@@ -1,5 +1,5 @@
 {
   "extends": "config/client.json",
-  "include": ["src/**/*.ts", "../../types/**/*.d.ts"],
+  "include": ["src/**/*.ts", "env.d.ts"],
   "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }
