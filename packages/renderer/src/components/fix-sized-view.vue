@@ -24,12 +24,17 @@ const toCssSize = (size: number | string) => {
 const style = reactive<CSSProperties>({
   width: toCssSize(props.width),
   height: toCssSize(props.height),
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 });
 </script>
 
 <template>
   <div :class="`fix-sized-container flex ${props.class}`">
-    <slot :style="style"></slot>
+    <div :style="style">
+      <slot></slot>
+    </div>
   </div>
 </template>
 

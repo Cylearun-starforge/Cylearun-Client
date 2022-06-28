@@ -55,8 +55,8 @@ import AlphaButton from '@/components/alpha-button.vue';
   gap: 72px;
   padding: 0;
 
-  width: 1380px;
-  height: 768px;
+  width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: 1700px) {
