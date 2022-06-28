@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, effect, CSSProperties, computed } from 'vue';
+import { ref, reactive, CSSProperties, computed, onMounted, onUnmounted, watch, watchEffect } from 'vue';
 import { getElementPosition } from '@/util/getElementPosition';
 const emits = defineEmits(['click']);
 const props = defineProps({
@@ -30,12 +30,17 @@ const onClick = (e: MouseEvent) => {
   emits('click', e);
 };
 const image = new Image();
-image.src = props.background;
+watchEffect(() => {
+  image.src = props.background;
+});
 image.onload = setAlpha;
 
-effect(() => {
+onMounted(() => {
   window.addEventListener('resize', setAlpha);
-  return () => {
+});
+
+onUnmounted(() => {
+  () => {
     window.removeEventListener('resize', setAlpha);
   };
 });
