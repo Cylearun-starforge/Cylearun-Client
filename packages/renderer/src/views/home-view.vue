@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FixSize from '@/components/fix-sized-view.vue';
 import HomeBackground from '@/components/home/home-background.vue';
 import ScrollInfo from '@/components/home/scroll-info.vue';
 import ButtonGroup from '@/components/home/button-group.vue';
@@ -10,7 +11,7 @@ import AlphaButton from '@/components/alpha-button.vue';
 
 <template>
   <home-background />
-  <div class="home-view-container flex">
+  <fix-size class="home-view-container" :width="1380" :height="768">
     <div class="row flex">
       <div class="col flex flex-col">
         <div class="top">
@@ -36,7 +37,7 @@ import AlphaButton from '@/components/alpha-button.vue';
         </alpha-button>
       </div>
     </div>
-  </div>
+  </fix-size>
   <alpha-button background="/home/buttons/button_logo.png" class="logo-button"></alpha-button>
   <version-tag class="version-tag" />
 </template>
@@ -48,8 +49,6 @@ import AlphaButton from '@/components/alpha-button.vue';
   left: 0;
   width: 100vw;
   height: 100vh;
-  justify-content: center;
-  align-items: center;
 }
 
 .row {
