@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import MaskButton from '@/components/mask-button.vue';
 import AlphaButton from '@/components/alpha-button.vue';
 import { RouterLink } from 'vue-router';
 </script>
