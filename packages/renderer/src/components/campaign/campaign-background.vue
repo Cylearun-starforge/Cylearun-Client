@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { effect, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import { useFollowMouse } from '@/hooks/use-follow-mouse';
 const backgroundImage = {
   cloud: ref<HTMLImageElement>(),
@@ -58,16 +58,16 @@ const cloud = useFollowMouse(backgroundImage.cloud, {
   },
 });
 
-effect(() => {
+onMounted(() => {
   window.addEventListener('mousemove', jet1);
   window.addEventListener('mousemove', jet2);
   window.addEventListener('mousemove', cloud);
+});
 
-  return () => {
-    window.removeEventListener('mousemove', jet1);
-    window.removeEventListener('mousemove', jet2);
-    window.removeEventListener('mousemove', cloud);
-  };
+onUnmounted(() => {
+  window.removeEventListener('mousemove', jet1);
+  window.removeEventListener('mousemove', jet2);
+  window.removeEventListener('mousemove', cloud);
 });
 </script>
 

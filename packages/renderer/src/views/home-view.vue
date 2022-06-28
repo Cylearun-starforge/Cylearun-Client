@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Background from '@/components/home/background.vue';
+import HomeBackground from '@/components/home/home-background.vue';
 import ScrollInfo from '@/components/home/scroll-info.vue';
 import ButtonGroup from '@/components/home/button-group.vue';
 import LadderPanel from '@/components/home/ladder-panel.vue';
@@ -9,7 +9,7 @@ import AlphaButton from '@/components/alpha-button.vue';
 </script>
 
 <template>
-  <background />
+  <home-background />
   <div class="home-view-container flex">
     <div class="row flex">
       <div class="col flex flex-col">
