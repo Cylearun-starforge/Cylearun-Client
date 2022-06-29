@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import CampaignBackground from '@/components/campaign/campaign-background.vue';
-import UserInfo from '@/components/home/user/user-info.vue';
+import UserInfo from '@/components/user/user-info.vue';
 import AlphaButton from '@/components/alpha-button.vue';
 import { RouterLink } from 'vue-router';
 </script>

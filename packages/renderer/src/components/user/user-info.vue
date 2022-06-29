@@ -33,13 +33,13 @@ const props = defineProps({
         {{ props.title ?? '<称号测试>' }}
       </div>
       <div class="image-box avatar-box">
-        <img src="/home/user/avatar.png" class="avatar" draggable="false" />
+        <img src="/user/avatar.png" class="avatar" draggable="false" />
       </div>
       <div class="image-box level-box">
-        <img src="/home/user/level.png" class="level" draggable="false" />
+        <img src="/user/level.png" class="level" draggable="false" />
       </div>
     </div>
-    <alpha-button background="/home/user/info.png" class="logout-button" v-if="!hideLogout">
+    <alpha-button background="/user/info.png" class="logout-button" v-if="!hideLogout">
       <div class="zh">登出账号</div>
     </alpha-button>
   </div>
@@ -56,7 +56,7 @@ const props = defineProps({
 .info-box {
   width: 76.43%;
   height: 80.53%;
-  background-image: url('/home/user/info.png');
+  background-image: url('/user/info.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   justify-content: center;
@@ -81,7 +81,7 @@ const props = defineProps({
 
 .image-box {
   position: absolute;
-  background-image: url('/home/user/box.png');
+  background-image: url('/user/box.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

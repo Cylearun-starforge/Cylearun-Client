@@ -5,7 +5,7 @@ import ScrollInfo from '@/components/home/scroll-info.vue';
 import ButtonGroup from '@/components/home/button-group.vue';
 import LadderPanel from '@/components/home/ladder-panel.vue';
 import VersionTag from '@/components/home/version-tag.vue';
-import UserInfo from '@/components/home/user/user-info.vue';
+import UserInfo from '@/components/user/user-info.vue';
 import AlphaButton from '@/components/alpha-button.vue';
 </script>
 
