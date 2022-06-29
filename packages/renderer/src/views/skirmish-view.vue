@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import SkirmishBackground from '@/components/skirmish/skirmish-background.vue';
-import UserInfo from '@/components/home/user/user-info.vue';
-import AlphaButton from '@/components/alpha-button.vue';
-import { RouterLink } from 'vue-router';
 import PlayerInfo from '@/components/game/player-info.vue';
-import { Player, PlayerTeam, PlayerLocation, PlayerSide } from '@/components/game/player-type';
+import { Player } from '@/components/game/player-type';
 import { reactive } from 'vue';
+import AddPlayerButton from '@/components/game/add-player-button.vue';
 
 const state = reactive({
   players: [] as Player[],
+  maxPlayers: 8,
 });
 
 state.players.push(
@@ -42,17 +41,22 @@ state.players.push(
       },
       team: 'B',
     },
-  },
-  {
-    type: 'empty',
-    info: {
-      side: {
-        zh: '随机',
-        en: 'RANDOM',
-      },
-    },
   }
 );
+
+const addPlayer = () => {
+  if (state.players.length < state.maxPlayers) {
+    state.players.push({
+      type: 'empty',
+      info: {
+        side: {
+          zh: '随机',
+          en: 'RANDOM',
+        },
+      },
+    });
+  }
+};
 </script>
 <template>
   <skirmish-background />
@@ -60,6 +64,7 @@ state.players.push(
     <div>
       <!-- TODO: use user id instead of index -->
       <player-info v-for="(player, i) in state.players" :key="i" :player="player" />
+      <add-player-button v-if="state.players.length < state.maxPlayers" @click="addPlayer" />
     </div>
   </div>
 </template>
