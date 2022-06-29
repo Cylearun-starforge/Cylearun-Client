@@ -19,8 +19,10 @@ import { RouterLink } from 'vue-router';
       </alpha-button>
 
       <alpha-button background="/home/buttons/skirmish.png" class="skirmish">
-        <div class="zh">自定义游戏</div>
-        <div class="en">SKIRMISH</div>
+        <router-link to="/skirmish">
+          <div class="zh">自定义游戏</div>
+          <div class="en">SKIRMISH</div>
+        </router-link>
       </alpha-button>
     </div>
     <div class="col col-3 flex flex-col">
@@ -80,12 +82,11 @@ import { RouterLink } from 'vue-router';
   top: 11.37%;
   background-color: transparent;
   border-width: 0;
-  /* background-image: url('/home/buttons/campaign.png'); */
   background-size: 100% 100%;
 }
 
 /* Style for vue-router link element */
-.campaign > a {
+.col > button > a {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -108,8 +109,6 @@ import { RouterLink } from 'vue-router';
 
 .conquer {
   height: 49.68%;
-
-  /* background-image: url('/home/buttons/conquer.png'); */
   background-size: 100% 100%;
 }
 
@@ -129,8 +128,6 @@ import { RouterLink } from 'vue-router';
 
 .skirmish {
   height: 50.49%;
-
-  /* background-image: url('/home/buttons/skirmish.png'); */
   background-size: 100% 100%;
 }
 
@@ -156,8 +153,6 @@ import { RouterLink } from 'vue-router';
 
 .load-mission {
   height: 20.1%;
-
-  /* background-image: url('/home/buttons/load_mission.png'); */
   background-size: 100% 100%;
 }
 
@@ -177,8 +172,6 @@ import { RouterLink } from 'vue-router';
 
 .activity {
   height: 52.9%;
-
-  /* background-image: url('/home/buttons/difficult_activity.png'); */
   background-size: 100% 100%;
 }
 
