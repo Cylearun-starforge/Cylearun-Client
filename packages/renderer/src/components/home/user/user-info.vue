@@ -12,6 +12,10 @@ const props = defineProps({
   title: {
     type: String,
   },
+  hideLogout: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 <template>
@@ -35,7 +39,7 @@ const props = defineProps({
         <img src="/home/user/level.png" class="level" draggable="false" />
       </div>
     </div>
-    <alpha-button background="/home/user/info.png" class="logout-button">
+    <alpha-button background="/home/user/info.png" class="logout-button" v-if="!hideLogout">
       <div class="zh">登出账号</div>
     </alpha-button>
   </div>
