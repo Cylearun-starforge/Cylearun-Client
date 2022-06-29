@@ -1,6 +1,9 @@
 <script lang="ts" setup>
-import { Player, BotDifficulties } from './player-type';
+import { Player, BotDifficulties, BotStyles } from './player-type';
 import { PropType, computed } from 'vue';
+import DropdownSelector from './dropdown-selector.vue';
+
+defineEmits(['update:botStyle']);
 const props = defineProps({
   /**
    * If user object is null, we render this component as bot mode
@@ -10,6 +13,11 @@ const props = defineProps({
     required: true,
   },
 });
+
+const bosCombatStyles = Object.entries(BotStyles).map(([key, value]) => ({
+  display: value,
+  value: key,
+}));
 
 const hasPlayer = computed(() => props.player.type !== 'empty');
 
@@ -99,21 +107,29 @@ const sideImage = computed(() => {
       :src="playerAvatar"
       class="player-avatar"
       :style="{ backgroundImage: `url('${playerAvatarBox}')` }"
+      draggable="false"
     />
     <div v-else class="player-avatar" :style="{ backgroundImage: `url('${playerAvatarBox}')` }"></div>
-    <img v-if="player.type === 'bot'" src="/game/bot_tag.png" class="tag" style="left: 14px" />
-    <img v-if="hasPlayer" :src="playerTeamTag" class="tag" style="left: 210px" />
+    <img v-if="player.type === 'bot'" src="/game/bot_tag.png" class="tag" style="left: 14px" draggable="false" />
+    <img v-if="hasPlayer" :src="playerTeamTag" class="tag" style="left: 210px" draggable="false" />
     <div class="player-info-container flex">
       <div class="player-card">
-        <img v-if="hasPlayer" :src="playerCard" />
+        <img v-if="hasPlayer" :src="playerCard" draggable="false" />
         <div class="info zh">
-          <div class="name">{{ playerName }}</div>
+          <div :class="`name ${!hasPlayer ? 'name-empty' : ' '}`">{{ playerName }}</div>
           <div v-if="props.player.type === 'human'">{{ props.player.info.group ?? '<无战队>' }}</div>
           <div v-if="props.player.type === 'human'">{{ props.player.info.title ?? '<测试称号>' }}</div>
+          <dropdown-selector
+            v-if="props.player.type === 'bot'"
+            class="player-card-bot-style-selector"
+            :candidates="bosCombatStyles"
+            :value="props.player.info.style"
+            @update:value="$emit('update:botStyle', $event)"
+          />
         </div>
       </div>
       <div class="side-card">
-        <img v-if="hasPlayer" :src="sideImage" />
+        <img v-if="hasPlayer" :src="sideImage" draggable="false" />
         <div class="info">
           <div class="zh">{{ props.player.info.side.zh }}</div>
           <div class="en">{{ props.player.info.side.en }}</div>
@@ -128,7 +144,7 @@ const sideImage = computed(() => {
         </div>
       </div>
       <div class="level-box">
-        <img v-if="playerLevel !== null" :src="playerLevel" />
+        <img v-if="playerLevel !== null" :src="playerLevel" draggable="false" />
       </div>
     </div>
   </div>
@@ -180,9 +196,19 @@ const sideImage = computed(() => {
   font-size: 20px;
 }
 
+.player-card > .info > .name-empty {
+  opacity: 0.7;
+}
+
 .player-card > .info > div {
   font-size: 16px;
   margin: 4px auto;
+}
+
+.player-card-bot-style-selector {
+  width: 100%;
+  height: 50%;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .player-card > img,

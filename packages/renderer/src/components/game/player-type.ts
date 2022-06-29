@@ -21,6 +21,10 @@ export type BotPlayer = {
   style: string;
 };
 
+export const BotStyles = {
+  random: '随机战斗风格',
+} as const;
+
 export type PlayerInfo = HumanPlayer | BotPlayer;
 export type PlayerTeam = 'A' | 'B' | 'C' | 'D';
 export type PlayerLocation = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;

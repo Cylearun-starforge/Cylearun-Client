@@ -32,7 +32,7 @@ state.players.push(
   {
     type: 'bot',
     info: {
-      style: '随机',
+      style: 'random',
       difficulty: 'hard',
       color: '#00C396',
       location: 1,
