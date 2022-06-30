@@ -4,6 +4,8 @@ import PlayerInfo from '@/components/game/player-info.vue';
 import { Player } from '@/components/game/player-type';
 import { reactive } from 'vue';
 import AddPlayerButton from '@/components/game/add-player-button.vue';
+import BackButton from '@/components/back-button.vue';
+import SkirmishRightInfo from '@/components/skirmish/skirmish-right-info.vue';
 
 const state = reactive({
   players: [] as Player[],
@@ -66,7 +68,12 @@ const addPlayer = () => {
       <player-info v-for="(player, i) in state.players" :key="i" :player="player" />
       <add-player-button v-if="state.players.length < state.maxPlayers" @click="addPlayer" />
     </div>
+    <div class="skirmish-map-container flex">
+      <div class="map-preview-and-options"></div>
+      <skirmish-right-info />
+    </div>
   </div>
+  <back-button class="back-button" />
 </template>
 
 <style scoped>
@@ -77,5 +84,22 @@ const addPlayer = () => {
   width: 100vw;
   height: 100vh;
   padding: 20px;
+  padding-right: 0;
+  gap: 12px;
+}
+
+.skirmish-map-container {
+  flex: 1;
+}
+
+.map-preview-and-options {
+  flex: 1;
+  background-color: rgb(217, 135, 28);
+}
+
+.back-button {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
 }
 </style>
