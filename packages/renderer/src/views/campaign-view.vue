@@ -2,7 +2,7 @@
 import CampaignBackground from '@/components/campaign/campaign-background.vue';
 import UserInfo from '@/components/user/user-info.vue';
 import AlphaButton from '@/components/alpha-button.vue';
-import { RouterLink } from 'vue-router';
+import BackButton from '@/components/back-button.vue';
 </script>
 <template>
   <campaign-background />
@@ -40,12 +40,7 @@ import { RouterLink } from 'vue-router';
           <div class="en">FAN MISSION</div>
         </alpha-button>
       </div>
-      <alpha-button background="/campaign/back.png" class="back-button">
-        <router-link to="/">
-          <div class="zh">返回主菜单</div>
-          <div class="en">BACK</div>
-        </router-link>
-      </alpha-button>
+      <back-button class="back-button" />
     </div>
   </div>
 </template>
@@ -135,24 +130,7 @@ import { RouterLink } from 'vue-router';
 
 .back-button {
   position: absolute;
-  width: 16.67%;
-  height: 11.48%;
   right: 48px;
   bottom: 48px;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.back-button > a {
-  text-decoration: none;
-}
-
-.back-button .zh,
-.back-button .en {
-  color: white;
-  text-align: center;
-  font-size: 24px;
-  padding-left: 8px;
 }
 </style>
