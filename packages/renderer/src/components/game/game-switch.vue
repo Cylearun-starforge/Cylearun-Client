@@ -40,7 +40,7 @@ const emitUpdate = () => {
 .game-switch-root {
   height: 32px;
   align-items: center;
-  color: #0392c1;
+  color: rgb(134, 200, 217);
 }
 
 .game-switch-button {
@@ -57,11 +57,11 @@ const emitUpdate = () => {
 }
 
 .game-switch-button:not(.game-switch-selected):not(.game-switch-button-disabled):hover {
-  background-image: url('/game/switch_box.png'), radial-gradient(circle, #00c0ff 0%, transparent 40%);
+  background-image: url('/game/switch_box.png'), radial-gradient(circle, rgb(134, 200, 217) 0%, transparent 45%);
 }
 
 .game-switch-selected {
-  background-image: url('/game/switch_box.png'), radial-gradient(circle, #00c0ff 0%, transparent 60%);
+  background-image: url('/game/switch_box.png'), radial-gradient(circle, rgb(134, 200, 217) 0%, transparent 50%);
 }
 
 .game-switch-disabled {
