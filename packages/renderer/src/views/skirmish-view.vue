@@ -6,6 +6,9 @@ import { reactive } from 'vue';
 import AddPlayerButton from '@/components/game/add-player-button.vue';
 import BackButton from '@/components/back-button.vue';
 import SkirmishRightInfo from '@/components/skirmish/skirmish-right-info.vue';
+import MapPreview from '@/components/game/map-preview.vue';
+import AlphaButton from '@/components/alpha-button.vue';
+import GameOptions from '@/components/game/game-options.vue';
 
 const state = reactive({
   players: [] as Player[],
@@ -69,7 +72,17 @@ const addPlayer = () => {
       <add-player-button v-if="state.players.length < state.maxPlayers" @click="addPlayer" />
     </div>
     <div class="skirmish-map-container flex">
-      <div class="map-preview-and-options"></div>
+      <div class="map-preview-and-options flex flex-col">
+        <map-preview :player-count="[1, 4]" :map-name="{ zh: '围困之都', en: 'SIEGE OF' }" />
+        <div class="game-options-container flex">
+          <alpha-button background="/game/start.png" class="game-start-button">
+            <div class="zh">开始游戏</div>
+            <div class="en">-S-T-A-R-T-</div>
+          </alpha-button>
+
+          <game-options />
+        </div>
+      </div>
       <skirmish-right-info />
     </div>
   </div>
@@ -94,7 +107,29 @@ const addPlayer = () => {
 
 .map-preview-and-options {
   flex: 1;
-  background-color: rgb(217, 135, 28);
+}
+
+.game-options-container {
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.game-start-button {
+  width: 190px;
+  height: 69px;
+  background-size: 100% 100%;
+}
+
+.game-start-button > div {
+  color: rgb(134, 200, 217);
+}
+
+.game-start-button > .zh {
+  font-size: 26px;
+}
+
+.game-start-button > .en {
+  font-size: 22px;
 }
 
 .back-button {
