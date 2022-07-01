@@ -15,6 +15,7 @@ export class MainWindow extends BrowserWindow {
         nodeIntegration: false,
         preload,
       },
+      icon: './assets/Cylearun.ico',
     });
   }
 
