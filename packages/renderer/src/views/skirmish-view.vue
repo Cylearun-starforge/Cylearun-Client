@@ -9,10 +9,12 @@ import SkirmishRightInfo from '@/components/skirmish/skirmish-right-info.vue';
 import MapPreview from '@/components/game/map-preview.vue';
 import AlphaButton from '@/components/alpha-button.vue';
 import GameOptions from '@/components/game/game-options.vue';
+import { GameOptionConstructor } from 'config/game/game-options';
 
 const state = reactive({
   players: [] as Player[],
   maxPlayers: 8,
+  options: new GameOptionConstructor['标准对战[传统]'](),
 });
 
 state.players.push(
@@ -80,7 +82,7 @@ const addPlayer = () => {
             <div class="en">-S-T-A-R-T-</div>
           </alpha-button>
 
-          <game-options />
+          <game-options v-model:options="state.options" />
         </div>
       </div>
       <skirmish-right-info />
