@@ -67,41 +67,51 @@ const updateField = <Key extends keyof GameOptions>(field: Key, value: GameOptio
       <div class="flex">
         <div class="dropdown-desc">初始单位数</div>
         <dropdown-selector
-          :candidates="[{ display: `${options.unit.value}`, value: `${options.unit.value}` }]"
-          :value="`${options.unit.value}`"
+          :candidates="
+            [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => ({
+              display: `${n}`,
+              value: n,
+            }))
+          "
+          :value="options.unit.value"
+          @update:value="updateField('unit', $event)"
         />
       </div>
       <div class="flex">
         <div class="dropdown-desc">游戏速度</div>
         <dropdown-selector
-          :candidates="[
-            {
-              display: `${GameFpsSettings[options.fps.value]}(${options.fps.value}FPS)`,
-              value: `${options.fps.value}`,
-            },
-          ]"
-          :value="`${options.fps.value}`"
+          :candidates="
+            Object.entries(GameFpsSettings).map(([key, value]) => ({
+              display: `${value}(${key}FPS)`,
+              value: parseInt(key, 10),
+            }))
+          "
+          :value="options.fps.value"
+          @update:value="updateField('fps', $event)"
         />
       </div>
       <div class="flex">
         <div class="dropdown-desc">战场时间</div>
         <dropdown-selector
-          :candidates="[
-            {
-              display: `${GameTimeSettings[options.time.value]}(${options.time.value})`,
-              value: `${options.time.value}`,
-            },
-          ]"
-          :value="`${options.time.value}`"
+          :candidates="
+            Object.entries(GameTimeSettings).map(([key, value]) => ({
+              display: `${value}(${key})`,
+              value: options.time.value,
+            }))
+          "
+          :value="options.time.value"
+          @update:value="updateField('time', $event)"
         />
       </div>
       <div class="flex">
         <div class="dropdown-desc">极端天气</div>
         <dropdown-selector
           :candidates="[
-            { display: `${options.extremeWeather.value ? '' : '不'}启用`, value: `${options.extremeWeather.value}` },
+            { display: '启用', value: true },
+            { display: '不启用', value: false },
           ]"
-          :value="`${options.extremeWeather.value}`"
+          :value="options.extremeWeather.value"
+          @update:value="updateField('extremeWeather', $event)"
         />
       </div>
     </div>
