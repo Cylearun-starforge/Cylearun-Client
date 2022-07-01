@@ -1,16 +1,22 @@
 <script lang="ts" setup>
 import GameSwitch from './game-switch.vue';
-import DropdownSelector from './dropdown-selector.vue';
-import { GameOptionLabels, GameTimeSettings, GameFpsSettings, GameOptions } from 'config/game/game-options';
+import DropdownSelector from './dropdown-selector';
+import {
+  GameOptionLabels,
+  GameTimeSettings,
+  GameFpsSettings,
+  GameOptions,
+  GameFundOptions,
+} from 'config/game/game-options';
 import { PropType } from 'vue';
 
-defineProps({
+const props = defineProps({
   options: {
     type: Object as PropType<GameOptions>,
     required: true,
   },
 });
-defineEmits(['update:options']);
+const emit = defineEmits(['update:options']);
 const leftSideOptions = [
   'crate',
   'fastGame',
@@ -23,6 +29,17 @@ const leftSideOptions = [
   'hideLocation',
   'dayNight',
 ] as const;
+
+const updateField = <Key extends keyof GameOptions>(field: Key, value: GameOptions[Key]['value']) => {
+  const options: GameOptions = {
+    ...props.options,
+    [field]: {
+      value: value,
+      disabled: props.options[field].disabled,
+    },
+  };
+  emit('update:options', options);
+};
 </script>
 
 <template>
@@ -33,7 +50,7 @@ const leftSideOptions = [
         class="game-switch"
         :key="opt"
         :checked="options[opt].value"
-        @update:checked="$emit('update:options', { ...options, [opt]: { value: $event } })"
+        @update:checked="updateField(opt, $event)"
         :disabled="options[opt].disabled"
         :text="GameOptionLabels[opt]"
       />
@@ -42,8 +59,9 @@ const leftSideOptions = [
       <div class="flex">
         <div class="dropdown-desc">初始资金</div>
         <dropdown-selector
-          :candidates="[{ display: `${options.fund.value}`, value: `${options.fund.value}` }]"
-          :value="`${options.fund.value}`"
+          :candidates="GameFundOptions.map(fund => ({ value: fund, display: `${fund}` }))"
+          :value="options.fund.value"
+          @update:value="updateField('fund', $event)"
         />
       </div>
       <div class="flex">

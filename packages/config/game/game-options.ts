@@ -16,6 +16,9 @@ export const GameTimeSettings = {
 
 export type GameTime = keyof typeof GameTimeSettings;
 
+export const GameFundOptions = [10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000] as const;
+export type GameFund = typeof GameFundOptions[number];
+
 export interface GameOptions {
   crate: GameOptionDefine<boolean>;
   fastGame: GameOptionDefine<boolean>;
@@ -27,7 +30,7 @@ export interface GameOptions {
   warFog: GameOptionDefine<boolean>;
   hideLocation: GameOptionDefine<boolean>;
   dayNight: GameOptionDefine<boolean>;
-  fund: GameOptionDefine<number>;
+  fund: GameOptionDefine<GameFund>;
   unit: GameOptionDefine<number>;
   fps: GameOptionDefine<GameFps>;
   time: GameOptionDefine<GameTime>;
@@ -97,7 +100,7 @@ class StandardGameOptions implements GameOptions {
     value: false,
     disabled: false,
   };
-  fund = {
+  fund: GameOptionDefine<GameFund> = {
     value: 10000,
     disabled: false,
   };

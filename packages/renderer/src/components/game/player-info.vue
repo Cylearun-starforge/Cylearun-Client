@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Player, BotDifficulties, BotStyles } from 'config/game/player-type';
 import { PropType, computed } from 'vue';
-import DropdownSelector from './dropdown-selector.vue';
+import DropdownSelector from './dropdown-selector';
 
 defineEmits(['update:botStyle']);
 const props = defineProps({
@@ -121,7 +121,7 @@ const sideImage = computed(() => {
           <div v-if="props.player.type === 'human'">{{ props.player.info.title ?? '<测试称号>' }}</div>
           <dropdown-selector
             v-if="props.player.type === 'bot'"
-            class="player-card-bot-style-selector"
+            :style="{ width: '100%', height: '50%', color: 'rgba(255, 255, 255, 0.7)' }"
             :candidates="bosCombatStyles"
             :value="props.player.info.style"
             @update:value="$emit('update:botStyle', $event)"
@@ -203,12 +203,6 @@ const sideImage = computed(() => {
 .player-card > .info > div {
   font-size: 16px;
   margin: 4px auto;
-}
-
-.player-card-bot-style-selector {
-  width: 100%;
-  height: 50%;
-  color: rgba(255, 255, 255, 0.7);
 }
 
 .player-card > img,
