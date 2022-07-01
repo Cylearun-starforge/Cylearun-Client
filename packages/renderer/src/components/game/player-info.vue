@@ -170,6 +170,7 @@ const sideImage = computed(() => {
   top: 0;
   width: calc(100% - 68px);
   height: 100%;
+  align-items: center;
 }
 
 .tag {
@@ -183,13 +184,13 @@ const sideImage = computed(() => {
   background-image: url('/user/info_card_box.png');
   background-size: 100% 100%;
   width: 196.67px;
-  height: 87.22px;
+  height: 76px;
 }
 
 .player-card > .info {
   width: 100%;
   height: 100%;
-  padding: 8px 28px 8px 16px;
+  padding: 4px 28px 4px 16px;
 }
 
 .player-card > .info > .name {
@@ -217,13 +218,13 @@ const sideImage = computed(() => {
   background-image: url('/game/side_box.png');
   background-size: 100% 100%;
   width: 196.67px;
-  height: 87.22px;
+  height: 76px;
 }
 
 .side-card > .info {
   width: 100%;
   height: 50%;
-  transform: translateY(38px);
+  transform: translateY(30px);
   padding: 0 8px 0 30px;
 }
 
@@ -253,12 +254,11 @@ const sideImage = computed(() => {
 }
 
 .right-selector-box {
-  width: 36px;
-  height: 72px;
+  width: 30px;
+  height: 60px;
   position: absolute;
-  right: 8px;
+  right: 12px;
   top: 8px;
-  /* transform: translateY(-50%); */
 }
 
 .right-selector-box > div {
