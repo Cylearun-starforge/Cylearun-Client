@@ -129,7 +129,7 @@ const sideImage = computed(() => {
         </div>
       </div>
       <div class="side-card">
-        <img v-if="hasPlayer" :src="sideImage" draggable="false" />
+        <img :src="sideImage" draggable="false" />
         <div class="info">
           <div class="zh">{{ props.player.info.side.zh }}</div>
           <div class="en">{{ props.player.info.side.en }}</div>
