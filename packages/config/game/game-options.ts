@@ -98,7 +98,7 @@ class StandardGameOptions implements GameOptions {
     disabled: false,
   };
   fund = {
-    value: 0,
+    value: 10000,
     disabled: false,
   };
   unit = {
