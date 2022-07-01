@@ -44,8 +44,8 @@ const emitUpdate = () => {
 }
 
 .game-switch-button {
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   margin-right: 4px;
   background-image: url('/game/switch_box.png');
   background-size: contain;
@@ -57,11 +57,11 @@ const emitUpdate = () => {
 }
 
 .game-switch-button:not(.game-switch-selected):not(.game-switch-button-disabled):hover {
-  background-image: url('/game/switch_box.png'), radial-gradient(circle, rgb(134, 200, 217) 0%, transparent 45%);
+  background-image: url('/game/switch_box.png'), radial-gradient(circle, rgba(0, 192, 255, 0.8) 0 10%, transparent 50%);
 }
 
 .game-switch-selected {
-  background-image: url('/game/switch_box.png'), radial-gradient(circle, rgb(134, 200, 217) 0%, transparent 50%);
+  background-image: url('/game/switch_box.png'), radial-gradient(circle, rgb(0, 192, 255) 0 10%, transparent 50%);
 }
 
 .game-switch-disabled {

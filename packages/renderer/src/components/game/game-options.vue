@@ -30,6 +30,7 @@ const leftSideOptions = [
     <div class="flex flex-col">
       <game-switch
         v-for="opt in leftSideOptions"
+        class="game-switch"
         :key="opt"
         :checked="options[opt].value"
         @update:checked="$emit('update:options', { ...options, [opt]: { value: $event } })"
@@ -100,6 +101,10 @@ const leftSideOptions = [
 
 .game-options-root > div {
   width: 50%;
+}
+
+.game-switch {
+  margin-bottom: 4px;
 }
 
 .dropdown-desc {
