@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SkirmishBackground from '@/components/skirmish/skirmish-background.vue';
 import PlayerInfo from '@/components/game/player-info.vue';
-import { Player } from '@/components/game/player-type';
+import { Player } from 'config/game/player-type';
 import { reactive } from 'vue';
 import AddPlayerButton from '@/components/game/add-player-button.vue';
 import BackButton from '@/components/back-button.vue';

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Player, BotDifficulties, BotStyles } from './player-type';
+import { Player, BotDifficulties, BotStyles } from 'config/game/player-type';
 import { PropType, computed } from 'vue';
 import DropdownSelector from './dropdown-selector.vue';
 
