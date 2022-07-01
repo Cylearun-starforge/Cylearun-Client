@@ -136,7 +136,7 @@ const addPlayer = () => {
 
 .back-button {
   position: absolute;
-  right: 24px;
-  bottom: 24px;
+  right: 12px;
+  bottom: 12px;
 }
 </style>

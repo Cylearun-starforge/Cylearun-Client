@@ -10,7 +10,8 @@
   height: 100%;
   padding: 0 12px;
   align-items: center;
-  font-size: 18px;
+  font-size: 17px;
+  font-weight: bolder;
   font-family: '汉仪细等线';
 }
 
@@ -43,7 +44,8 @@
 
 .dropdown-menu-item {
   padding: 4px;
-  font-size: 18px;
+  font-size: 17px;
+  font-weight: bolder;
   font-family: '汉仪细等线';
 }
 .dropdown-menu-item:hover {
