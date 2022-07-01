@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import HomeView from '@/views/home-view.vue';
 import CampaignView from '@/views/campaign-view.vue';
 import SkirmishView from '@/views/skirmish-view.vue';
+import DifficultActivityView from '@/views/difficult-activity-view.vue';
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
@@ -19,6 +20,11 @@ const router = createRouter({
       path: '/skirmish',
       name: 'skirmish',
       component: SkirmishView,
+    },
+    {
+      path: '/difficult-activity',
+      name: 'difficultActivity',
+      component: DifficultActivityView,
     },
   ],
 });

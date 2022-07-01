@@ -32,8 +32,10 @@ import { RouterLink } from 'vue-router';
         <div class="en">LOADMISSION</div>
       </alpha-button>
       <alpha-button background="/home/buttons/difficult_activity.png" class="activity">
-        <div class="zh">巅峰活动</div>
-        <div class="en">DIFFICULT ACTIVITY</div>
+        <router-link to="/difficult-activity">
+          <div class="zh">巅峰活动</div>
+          <div class="en">DIFFICULT ACTIVITY</div>
+        </router-link>
       </alpha-button>
     </div>
   </div>
