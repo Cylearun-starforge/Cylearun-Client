@@ -1,12 +1,19 @@
-import { app, Menu } from 'electron';
+import { app, Menu, ipcMain } from 'electron';
 import { MainWindow } from './main-window';
 import { join } from 'path';
+import { IpcInvokeImpl } from './ipc-invokes-impl';
 
 const preload = join(__dirname, '../../../packages/preload/dist/index.cjs');
 
 export class Application {
   static get raw() {
     return app;
+  }
+
+  static registerIpcInvoke() {
+    Object.entries(IpcInvokeImpl).forEach(([channel, handler]) => {
+      ipcMain.handle(channel, handler);
+    });
   }
 
   private constructor() {
@@ -17,6 +24,7 @@ export class Application {
     Menu.setApplicationMenu(null);
     return app.whenReady().then(() => {
       Application.checkPlatform();
+      Application.registerIpcInvoke();
 
       import('electron-devtools-installer')
         .then(installer => {
@@ -33,7 +41,7 @@ export class Application {
       });
 
       app.on('window-all-closed', () => {
-        app.quit();
+        Application.close();
       });
     });
   }
@@ -43,5 +51,9 @@ export class Application {
       // TODO: show a dialog
       console.warn('This application is not supported on this platform');
     }
+  }
+
+  static close() {
+    app.quit();
   }
 }

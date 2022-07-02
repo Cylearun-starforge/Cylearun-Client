@@ -7,6 +7,8 @@ import LadderPanel from '@/components/home/ladder-panel.vue';
 import VersionTag from '@/components/home/version-tag.vue';
 import UserInfo from '@/components/user/user-info.vue';
 import AlphaButton from '@/components/alpha-button.vue';
+
+const closeApp = () => window.callMain('closeApp');
 </script>
 
 <template>
@@ -31,7 +33,7 @@ import AlphaButton from '@/components/alpha-button.vue';
           <div class="en">OPTIONS</div>
         </alpha-button>
         <user-info class="user-info" username="用户名test" />
-        <alpha-button background="/home/buttons/exit.png" class="exit-button">
+        <alpha-button background="/home/buttons/exit.png" class="exit-button" @click="closeApp">
           <div class="zh">退出游戏</div>
           <div class="en">EXIT</div>
         </alpha-button>

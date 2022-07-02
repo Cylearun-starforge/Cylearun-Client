@@ -12,7 +12,8 @@
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
     "vue-router": "^4.0.15",
-    "vueuc": "^0.4.45"
+    "vueuc": "^0.4.45",
+    "preload": "workspace:*"
   },
   "devDependencies": {
     "@types/jsdom": "latest",
