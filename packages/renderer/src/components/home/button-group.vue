@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import AlphaButton from '@/components/alpha-button.vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
+const router = useRouter();
 </script>
 <template>
   <div class="container flex">
     <div class="col col-1 flex flex-col">
-      <alpha-button background="/home/buttons/campaign.png" class="campaign">
+      <button class="campaign">
         <router-link to="/campaign">
           <div class="zh">战役</div>
           <div class="en">CAMPAIGN</div>
         </router-link>
-      </alpha-button>
+      </button>
     </div>
     <div class="col col-2 flex flex-col">
       <alpha-button background="/home/buttons/conquer.png" class="conquer">
@@ -18,12 +19,12 @@ import { RouterLink } from 'vue-router';
         <div class="en">CONQUER</div>
       </alpha-button>
 
-      <alpha-button background="/home/buttons/skirmish.png" class="skirmish">
+      <button class="skirmish">
         <router-link to="/skirmish">
           <div class="zh">自定义游戏</div>
           <div class="en">SKIRMISH</div>
         </router-link>
-      </alpha-button>
+      </button>
     </div>
     <div class="col col-3 flex flex-col">
       <div class="col-3-fake"></div>
@@ -31,11 +32,13 @@ import { RouterLink } from 'vue-router';
         <div class="zh">载入存档</div>
         <div class="en">LOADMISSION</div>
       </alpha-button>
-      <alpha-button background="/home/buttons/difficult_activity.png" class="activity">
-        <router-link to="/difficult-activity">
-          <div class="zh">巅峰活动</div>
-          <div class="en">DIFFICULT ACTIVITY</div>
-        </router-link>
+      <alpha-button
+        background="/home/buttons/difficult_activity.png"
+        class="activity"
+        @click="() => router.push({ path: '/difficult-activity' })"
+      >
+        <div class="zh">巅峰活动</div>
+        <div class="en">DIFFICULT ACTIVITY</div>
       </alpha-button>
     </div>
   </div>
@@ -77,6 +80,7 @@ import { RouterLink } from 'vue-router';
 .container button {
   font-size: 40px;
   color: white;
+  background-color: transparent;
 }
 
 .campaign {
@@ -85,6 +89,9 @@ import { RouterLink } from 'vue-router';
   background-color: transparent;
   border-width: 0;
   background-size: 100% 100%;
+  background-image: url('/home/buttons/campaign.png');
+  background-position: center;
+  clip-path: polygon(25% 2.8%, 73% 3%, 96% 26%, 96% 72%, 72% 98%, 51.4% 98%, 5% 52%, 5% 18%);
 }
 
 /* Style for vue-router link element */
@@ -131,6 +138,8 @@ import { RouterLink } from 'vue-router';
 .skirmish {
   height: 50.49%;
   background-size: 100% 100%;
+  background-image: url('/home/buttons/skirmish.png');
+  clip-path: polygon(22% 2%, 73% 2%, 96% 24%, 97% 70%, 72% 95%, 51% 95%, 3% 52%, 3% 20%);
 }
 
 .skirmish .zh {
@@ -189,6 +198,7 @@ import { RouterLink } from 'vue-router';
   position: absolute;
   left: 10%;
   top: 41%;
+  text-align: left;
 }
 
 .container > .col > div {

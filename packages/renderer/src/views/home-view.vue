@@ -132,7 +132,7 @@ import AlphaButton from '@/components/alpha-button.vue';
 }
 
 .user-info {
-  height: 25%;
+  height: 30%;
   align-self: flex-end;
 }
 

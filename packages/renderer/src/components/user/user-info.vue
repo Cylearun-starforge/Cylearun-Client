@@ -39,7 +39,7 @@ const props = defineProps({
         <img src="/user/level.png" class="level" draggable="false" />
       </div>
     </div>
-    <alpha-button background="/user/info.png" class="logout-button" v-if="!hideLogout">
+    <alpha-button background="/button.png" class="logout-button" v-if="!hideLogout">
       <div class="zh">登出账号</div>
     </alpha-button>
   </div>
@@ -127,13 +127,13 @@ const props = defineProps({
 }
 
 .logout-button {
-  width: 39.69%;
-  height: 19.64%;
+  width: 34.69%;
+  height: 22.64%;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
   position: absolute;
-  left: 26%;
+  left: 32%;
   bottom: 1%;
   min-height: 40px;
 }
