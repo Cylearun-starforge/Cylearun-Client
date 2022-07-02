@@ -1,3 +1,8 @@
+if (__DEV__) {
+  import('@vue/devtools').then(devtool => {
+    devtool.connect('http://localhost', '8098');
+  });
+}
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 

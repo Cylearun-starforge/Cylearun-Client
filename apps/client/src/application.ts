@@ -26,17 +26,6 @@ export class Application {
       Application.checkPlatform();
       Application.registerIpcInvoke();
 
-      if (__DEV__) {
-        console.log('installing devtools');
-        import('electron-devtools-installer')
-          .then(installer => {
-            return installer.default(installer.VUEJS3_DEVTOOLS);
-          })
-          .catch(err => {
-            console.error('An error occurred while installing Vue Devtools:', err);
-          });
-      }
-
       const window = new MainWindow(preload);
       window.load();
       window.webContents.toggleDevTools();
