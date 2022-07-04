@@ -1,39 +1,23 @@
 <script lang="ts" setup>
-import { Player, BotDifficulties, BotStyles } from 'config/game/player-type';
+import { BotDifficulties, BotStyles } from 'config/game/player-type';
 import { GameSideNames } from 'config/game/game-side';
-import { PropType, computed, reactive } from 'vue';
+import { computed, reactive } from 'vue';
 import DropdownSelector from './dropdown-selector';
 import SideSelectView from '@/components/game/side-select-view.vue';
+import { useSkirmish } from '@/stores/skirmish';
 
-const $emit = defineEmits(['update:player']);
+const skirmish = useSkirmish();
+
 const props = defineProps({
-  /**
-   * If user object is null, we render this component as bot mode
-   */
-  player: {
-    type: Object as PropType<Player>,
-    required: true,
+  playerIndex: {
+    type: Number,
   },
 });
 
+const player = computed(() => skirmish.players[props.playerIndex]);
+
 const state = reactive({
   openSideSelector: false,
-});
-
-const botMeta = computed(() => {
-  if (props.player.type === 'bot') {
-    return {
-      type: 'bot' as const,
-      meta: {
-        style: props.player.info.style,
-        difficulty: props.player.info.difficulty,
-      },
-    };
-  } else {
-    return {
-      type: 'human' as const,
-    };
-  }
 });
 
 const bosCombatStyles = Object.entries(BotStyles).map(([key, value]) => ({
@@ -41,77 +25,77 @@ const bosCombatStyles = Object.entries(BotStyles).map(([key, value]) => ({
   value: key,
 }));
 
-const hasPlayer = computed(() => props.player.type !== 'empty');
+const hasPlayer = computed(() => player.value.type !== 'empty');
 
 const playerAvatar = computed(() => {
-  if (props.player.type === 'empty') {
+  if (player.value.type === 'empty') {
     return '';
   }
 
-  if (props.player.type === 'human') {
-    return props.player.info.avatar;
+  if (player.value.type === 'human') {
+    return player.value.info.avatar;
   }
 
   return '/user/avatar_ai.png';
 });
 
 const playerAvatarBox = computed(() => {
-  if (props.player.type === 'empty') {
+  if (player.value.type === 'empty') {
     return '/user/box.png';
   }
 
-  if (props.player.type === 'human') {
-    return props.player.info.avatarBox;
+  if (player.value.type === 'human') {
+    return player.value.info.avatarBox;
   }
 
   return '/user/box.png';
 });
 
 const playerCard = computed(() => {
-  if (props.player.type === 'empty') {
+  if (player.value.type === 'empty') {
     return '';
   }
 
-  if (props.player.type === 'human') {
-    return props.player.info.card;
+  if (player.value.type === 'human') {
+    return player.value.info.card;
   }
 
   return '/user/info_card_ai.png';
 });
 
 const playerLevel = computed(() => {
-  if (props.player.type === 'human') {
-    return props.player.info.level;
+  if (player.value.type === 'human') {
+    return player.value.info.level;
   }
 
   return null;
 });
 
 const playerName = computed(() => {
-  if (props.player.type === 'empty') {
+  if (player.value.type === 'empty') {
     return '空位';
   }
 
-  if (props.player.type === 'human') {
-    return props.player.info.username;
+  if (player.value.type === 'human') {
+    return player.value.info.username;
   }
 
-  return BotDifficulties[props.player.info.difficulty] + '的敌人';
+  return BotDifficulties[player.value.info.difficulty] + '的敌人';
 });
 
 const playerTeamTag = computed(() => {
-  if (props.player.type === 'empty') {
+  if (player.value.type === 'empty') {
     return '';
   }
 
-  return `/game/team${props.player.info.team}.png`;
+  return `/game/team${player.value.info.team}.png`;
 });
 
 const sideImage = computed(() => {
-  if (props.player.type === 'empty') {
+  if (player.value.type === 'empty') {
     return '/game/side_random.png';
   }
-  switch (props.player.info.side) {
+  switch (player.value.info.side) {
     case 'fue':
       return '/game/side_fue.png';
     case 'allied':
@@ -125,21 +109,11 @@ const sideImage = computed(() => {
 <template>
   <teleport to="body" v-if="state.openSideSelector">
     <side-select-view
-      :side="props.player.info.side"
-      :bot-meta="botMeta"
+      :player-index="playerIndex"
       :close-view="
         () => {
           state.openSideSelector = false;
         }
-      "
-      @update:side="
-        $emit('update:player', {
-          type: player.type,
-          info: {
-            ...player.info,
-            side: $event,
-          },
-        })
       "
     />
   </teleport>
@@ -159,37 +133,28 @@ const sideImage = computed(() => {
         <img v-if="hasPlayer" :src="playerCard" draggable="false" />
         <div class="info zh">
           <div :class="`name ${!hasPlayer ? 'name-empty' : ' '}`">{{ playerName }}</div>
-          <div v-if="props.player.type === 'human'">{{ props.player.info.group ?? '<无战队>' }}</div>
-          <div v-if="props.player.type === 'human'">{{ props.player.info.title ?? '<测试称号>' }}</div>
+          <div v-if="player.type === 'human'">{{ player.info.group ?? '<无战队>' }}</div>
+          <div v-if="player.type === 'human'">{{ player.info.title ?? '<测试称号>' }}</div>
           <dropdown-selector
-            v-if="props.player.type === 'bot'"
+            v-if="player.type === 'bot'"
             :style="{ width: '100%', height: '50%', color: 'rgba(255, 255, 255, 0.7)' }"
             :candidates="bosCombatStyles"
-            :value="props.player.info.style"
-            @update:value="
-              $emit('update:player', {
-                type: 'bot',
-                info: {
-                  ...player.info,
-                  style: $event,
-                },
-              })
-            "
+            v-model:value="player.info.style"
           />
         </div>
       </div>
       <div class="side-card" @click="state.openSideSelector = true">
         <img :src="sideImage" draggable="false" />
         <div class="info">
-          <div class="zh">{{ GameSideNames[props.player.info.side].zh }}</div>
-          <div class="en">{{ GameSideNames[props.player.info.side].en }}</div>
+          <div class="zh">{{ GameSideNames[player.info.side].zh }}</div>
+          <div class="en">{{ GameSideNames[player.info.side].en }}</div>
         </div>
-        <div v-if="props.player.type !== 'empty'" class="right-selector-box flex flex-col">
+        <div v-if="player.type !== 'empty'" class="right-selector-box flex flex-col">
           <div>
-            <div class="selector-num">{{ props.player.info.location }}</div>
+            <div class="selector-num">{{ player.info.location }}</div>
           </div>
           <div>
-            <div :style="{ backgroundColor: props.player.info.color }"></div>
+            <div :style="{ backgroundColor: player.info.color }"></div>
           </div>
         </div>
       </div>

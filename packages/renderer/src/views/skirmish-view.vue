@@ -1,22 +1,16 @@
 <script setup lang="ts">
 import SkirmishBackground from '@/components/skirmish/skirmish-background.vue';
 import PlayerInfo from '@/components/game/player-info.vue';
-import { Player } from 'config/game/player-type';
-import { reactive } from 'vue';
 import AddPlayerButton from '@/components/game/add-player-button.vue';
 import BackButton from '@/components/back-button.vue';
 import SkirmishRightInfo from '@/components/skirmish/skirmish-right-info.vue';
 import MapPreview from '@/components/game/map-preview.vue';
 import AlphaButton from '@/components/alpha-button.vue';
 import GameOptions from '@/components/game/game-options.vue';
-import { GameOptionConstructor } from 'config/game/game-options';
+import { useSkirmish } from '@/stores/skirmish';
 
-const state = reactive({
-  players: [] as Player[],
-  maxPlayers: 8,
-  options: new GameOptionConstructor['标准对战[传统]'](),
-  selectingSide: false,
-});
+const state = useSkirmish();
+state.$reset();
 
 state.players.push(
   {
@@ -62,7 +56,7 @@ const addPlayer = () => {
   <div class="skirmish-view-root flex">
     <div>
       <!-- TODO: use user id instead of index -->
-      <player-info v-for="(player, i) in state.players" :key="i" :player="player" />
+      <player-info v-for="(_, i) in state.players" :key="i" :player-index="i" />
       <add-player-button v-if="state.players.length < state.maxPlayers" @click="addPlayer" />
     </div>
     <div class="skirmish-map-container flex">

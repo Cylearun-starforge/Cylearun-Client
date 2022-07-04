@@ -1,30 +1,19 @@
 <script lang="tsx" setup>
 import DropdownSelector from '@/components/game/dropdown-selector';
-import { defineComponent, ref, PropType, reactive } from 'vue';
-import { BotDifficulties, BotPlayer } from 'config/game/player-type';
+import { defineComponent, ref, PropType, reactive, computed } from 'vue';
+import { BotDifficulties } from 'config/game/player-type';
 import type { GameSide } from 'config/game/game-side';
 import { VBinder, VFollower, VTarget } from 'vueuc';
 import SideCharacteristicStyle from './side-characteristic.module.css';
+import { useSkirmish } from '@/stores/skirmish';
 
-type RobotPlayerExtraMeta =
-  | {
-      type: 'human';
-    }
-  | {
-      type: 'bot';
-      meta: BotPlayer;
-    };
-
-const $emit = defineEmits(['update:botMeta', 'update:side']);
+const skirmish = useSkirmish();
+const player = computed(() => skirmish.players[props.playerIndex]);
 
 const props = defineProps({
-  botMeta: {
-    type: Object as PropType<RobotPlayerExtraMeta>,
-    require: true,
-  },
-  side: {
-    type: String as PropType<GameSide>,
-    require: true,
+  playerIndex: {
+    type: Number,
+    required: true,
   },
   closeView: {
     type: Function as PropType<() => void>,
@@ -33,20 +22,8 @@ const props = defineProps({
 });
 
 const state = reactive({
-  currentSide: props.side ?? 'random',
+  currentSide: player.value.info.side ?? 'random',
 });
-
-const updateBotMeta = <Key extends keyof BotPlayer>(key: Key, value: BotPlayer[Key]) => {
-  if (props.botMeta.type === 'bot') {
-    $emit('update:botMeta', {
-      type: props.botMeta.type,
-      meta: {
-        ...props.botMeta.meta,
-        [key]: value,
-      },
-    });
-  }
-};
 
 const difficultyCandidate = Object.entries(BotDifficulties).map(([difficulty, name]) => ({
   display: `难度：${name}`,
@@ -57,8 +34,8 @@ const selectSide = (side: GameSide) => {
   state.currentSide = side;
 };
 
-const commitSide = () => {
-  $emit('update:side', state.currentSide);
+const commitSide = (side: GameSide = state.currentSide) => {
+  player.value.info.side = side;
   props.closeView();
 };
 
@@ -142,16 +119,11 @@ const futureSidesB = ['republic', 'gemoor'] as const;
               />
             </div>
           </div>
-          <div v-if="botMeta.type === 'bot'" class="ai-character-selector-area flex">
+          <div v-if="player.type === 'bot'" class="ai-character-selector-area flex">
+            <dropdown-selector v-model:value="player.info.difficulty" :candidates="difficultyCandidate" />
             <dropdown-selector
-              :value="botMeta.meta.difficulty"
-              :candidates="difficultyCandidate"
-              @update:value="updateBotMeta('difficulty', $event)"
-            />
-            <dropdown-selector
-              :value="botMeta.meta.style"
+              v-model:value="player.info.style"
               :candidates="[{ display: '随机战斗风格', value: 'random' }]"
-              @update:value="updateBotMeta('style', $event)"
             />
           </div>
         </div>
@@ -204,12 +176,12 @@ const futureSidesB = ['republic', 'gemoor'] as const;
         </div>
       </div>
       <div class="button-area flex flex-col">
-        <button class="flex flex-col" @click="commitSide">
+        <button class="flex flex-col" @click="commitSide('random')">
           <div class="zh">随机</div>
           <div class="en">RANDOM</div>
         </button>
 
-        <button class="flex flex-col" @click="closeView">
+        <button class="flex flex-col" @click="commitSide()">
           <div class="zh">选择</div>
           <div class="en">SELECT</div>
         </button>
