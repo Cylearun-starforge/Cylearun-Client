@@ -1,3 +1,4 @@
+import { GameSide } from './game-side';
 export type HumanPlayer = {
   username: string;
   level: string;
@@ -9,35 +10,33 @@ export type HumanPlayer = {
 };
 
 export const BotDifficulties = {
-  easy: '简单的敌人',
-  medium: '中等的敌人',
-  hard: '冷酷的敌人',
+  easy: '简单',
+  medium: '中等',
+  hard: '冷酷',
 } as const;
 
 type BotPlayerDifficulty = keyof typeof BotDifficulties;
-
-export type BotPlayer = {
-  difficulty: BotPlayerDifficulty;
-  style: string;
-};
 
 export const BotStyles = {
   random: '随机战斗风格',
 } as const;
 
+export type BotPlayerStyle = keyof typeof BotStyles;
+
+export type BotPlayer = {
+  difficulty: BotPlayerDifficulty;
+  style: BotPlayerStyle;
+};
+
 export type PlayerInfo = HumanPlayer | BotPlayer;
 export type PlayerTeam = 'A' | 'B' | 'C' | 'D';
 export type PlayerLocation = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-export type PlayerSide = {
-  zh: string;
-  en: string;
-};
 
 type GenericPlayer<PlayerType> = PlayerType & {
   team: PlayerTeam;
   location: PlayerLocation;
   color: string;
-  side: PlayerSide;
+  side: GameSide;
 };
 
 export type Player =
@@ -52,9 +51,8 @@ export type Player =
   | {
       type: 'empty';
       info: {
-        side: {
-          zh: '随机';
-          en: 'RANDOM';
-        };
+        side: 'random';
       };
     };
+
+export type PlayerType = Player['type'];

@@ -15,6 +15,7 @@ const state = reactive({
   players: [] as Player[],
   maxPlayers: 8,
   options: new GameOptionConstructor['标准对战[传统]'](),
+  selectingSide: false,
 });
 
 state.players.push(
@@ -28,10 +29,7 @@ state.players.push(
       username: '用户名test',
       color: '#0096C3',
       location: 1,
-      side: {
-        zh: '地球联合理事会',
-        en: 'F.U.E.',
-      },
+      side: 'fue',
       team: 'A',
     },
   },
@@ -42,10 +40,7 @@ state.players.push(
       difficulty: 'hard',
       color: '#00C396',
       location: 1,
-      side: {
-        zh: '盟军',
-        en: 'ALLIED FORCES',
-      },
+      side: 'allied',
       team: 'B',
     },
   }
@@ -56,10 +51,7 @@ const addPlayer = () => {
     state.players.push({
       type: 'empty',
       info: {
-        side: {
-          zh: '随机',
-          en: 'RANDOM',
-        },
+        side: 'random',
       },
     });
   }

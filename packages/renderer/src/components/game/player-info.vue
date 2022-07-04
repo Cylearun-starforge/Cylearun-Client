@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { Player, BotDifficulties, BotStyles } from 'config/game/player-type';
-import { PropType, computed } from 'vue';
+import { GameSideNames } from 'config/game/game-side';
+import { PropType, computed, reactive } from 'vue';
 import DropdownSelector from './dropdown-selector';
+import SideSelectView from '@/components/game/side-select-view.vue';
 
-defineEmits(['update:botStyle']);
+const $emit = defineEmits(['update:player']);
 const props = defineProps({
   /**
    * If user object is null, we render this component as bot mode
@@ -12,6 +14,26 @@ const props = defineProps({
     type: Object as PropType<Player>,
     required: true,
   },
+});
+
+const state = reactive({
+  openSideSelector: false,
+});
+
+const botMeta = computed(() => {
+  if (props.player.type === 'bot') {
+    return {
+      type: 'bot' as const,
+      meta: {
+        style: props.player.info.style,
+        difficulty: props.player.info.difficulty,
+      },
+    };
+  } else {
+    return {
+      type: 'human' as const,
+    };
+  }
 });
 
 const bosCombatStyles = Object.entries(BotStyles).map(([key, value]) => ({
@@ -74,7 +96,7 @@ const playerName = computed(() => {
     return props.player.info.username;
   }
 
-  return BotDifficulties[props.player.info.difficulty];
+  return BotDifficulties[props.player.info.difficulty] + '的敌人';
 });
 
 const playerTeamTag = computed(() => {
@@ -89,10 +111,10 @@ const sideImage = computed(() => {
   if (props.player.type === 'empty') {
     return '/game/side_random.png';
   }
-  switch (props.player.info.side.zh) {
-    case '地球联合理事会':
+  switch (props.player.info.side) {
+    case 'fue':
       return '/game/side_fue.png';
-    case '盟军':
+    case 'allied':
       return '/game/side_allied.png';
     default:
       return '/game/side_random.png';
@@ -101,6 +123,26 @@ const sideImage = computed(() => {
 </script>
 
 <template>
+  <teleport to="body" v-if="state.openSideSelector">
+    <side-select-view
+      :side="props.player.info.side"
+      :bot-meta="botMeta"
+      :close-view="
+        () => {
+          state.openSideSelector = false;
+        }
+      "
+      @update:side="
+        $emit('update:player', {
+          type: player.type,
+          info: {
+            ...player.info,
+            side: $event,
+          },
+        })
+      "
+    />
+  </teleport>
   <div class="player-info-root">
     <img
       v-if="hasPlayer"
@@ -124,15 +166,23 @@ const sideImage = computed(() => {
             :style="{ width: '100%', height: '50%', color: 'rgba(255, 255, 255, 0.7)' }"
             :candidates="bosCombatStyles"
             :value="props.player.info.style"
-            @update:value="$emit('update:botStyle', $event)"
+            @update:value="
+              $emit('update:player', {
+                type: 'bot',
+                info: {
+                  ...player.info,
+                  style: $event,
+                },
+              })
+            "
           />
         </div>
       </div>
-      <div class="side-card">
+      <div class="side-card" @click="state.openSideSelector = true">
         <img :src="sideImage" draggable="false" />
         <div class="info">
-          <div class="zh">{{ props.player.info.side.zh }}</div>
-          <div class="en">{{ props.player.info.side.en }}</div>
+          <div class="zh">{{ GameSideNames[props.player.info.side].zh }}</div>
+          <div class="en">{{ GameSideNames[props.player.info.side].en }}</div>
         </div>
         <div v-if="props.player.type !== 'empty'" class="right-selector-box flex flex-col">
           <div>
@@ -219,6 +269,7 @@ const sideImage = computed(() => {
   background-size: 100% 100%;
   width: 196.67px;
   height: 76px;
+  cursor: pointer;
 }
 
 .side-card > .info {
