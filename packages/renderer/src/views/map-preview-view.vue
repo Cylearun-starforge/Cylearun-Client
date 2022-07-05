@@ -1,6 +1,16 @@
 <script lang="ts" setup>
+import { PropType } from 'vue';
+import { GameMap } from 'config/game/game-map';
+
 defineEmits({
   close: null,
+});
+
+defineProps({
+  map: {
+    type: Object as PropType<GameMap>,
+    required: true,
+  },
 });
 </script>
 
@@ -11,7 +21,7 @@ defineEmits({
         <button class="close-button" @click="$emit('close')">
           <img src="/game/map/preview/close.png" draggable="false" />
         </button>
-        <img src="/game/map/preview/tmp_map.png" draggable="false" />
+        <img :src="map.satellites[0].image" draggable="false" />
       </div>
     </div>
     <div class="right-margin"></div>

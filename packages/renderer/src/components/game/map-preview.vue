@@ -1,18 +1,10 @@
 <script lang="ts" setup>
 import { PropType } from 'vue';
-
-type MapName = {
-  zh: string;
-  en: string;
-};
+import { GameMap } from 'config/game/game-map';
 
 defineProps({
-  playerCount: {
-    type: Object as PropType<[number, number]>,
-    required: true,
-  },
-  mapName: {
-    type: Object as PropType<MapName>,
+  map: {
+    type: Object as PropType<GameMap>,
     required: true,
   },
 });
@@ -21,14 +13,14 @@ defineProps({
 <template>
   <div class="map-preview-root">
     <img class="preview-border" src="/game/map_preview_box.png" draggable="false" />
-    <img class="map-preview" src="/game/tmp_game_map.png" draggable="false" />
+    <img class="map-preview" :src="map.cover" draggable="false" />
     <div class="desc">
-      <div class="en">{{ mapName.en }}</div>
-      <div class="zh">{{ mapName.zh }}</div>
+      <div class="en">{{ map.name.en }}</div>
+      <div class="zh">{{ map.name.zh }}</div>
     </div>
     <div class="player-count-box">
       <div class="extra-gradient flex">
-        <div class="count">{{ playerCount[0] }} - {{ playerCount[1] }}</div>
+        <div class="count">{{ map.playerLimit[0] }} - {{ map.playerLimit[1] }}</div>
         <div>Players</div>
       </div>
     </div>

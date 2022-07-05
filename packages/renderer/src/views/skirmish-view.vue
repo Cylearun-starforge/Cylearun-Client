@@ -13,39 +13,10 @@ import MapSelectView from './map-select-view.vue';
 import { reactive } from 'vue';
 
 const state = useSkirmish();
-state.$reset();
 const localState = reactive({
   previewingMap: false,
   changingMap: false,
 });
-
-state.players.push(
-  {
-    type: 'human',
-    info: {
-      avatar: '/user/avatar.png',
-      avatarBox: '/user/box.png',
-      card: '/user/info_card.png',
-      level: '/user/level.png',
-      username: '用户名test',
-      color: '#0096C3',
-      location: 1,
-      side: 'fue',
-      team: 'A',
-    },
-  },
-  {
-    type: 'bot',
-    info: {
-      style: 'random',
-      difficulty: 'hard',
-      color: '#00C396',
-      location: 1,
-      side: 'allied',
-      team: 'B',
-    },
-  }
-);
 
 const addPlayer = () => {
   if (state.players.length < state.maxPlayers) {
@@ -61,7 +32,11 @@ const addPlayer = () => {
 <template>
   <teleport to="body">
     <map-select-view v-if="localState.changingMap" @close="localState.changingMap = false"></map-select-view>
-    <satellite-view v-if="localState.previewingMap" @close="localState.previewingMap = false"></satellite-view>
+    <satellite-view
+      v-if="localState.previewingMap"
+      @close="localState.previewingMap = false"
+      :map="state.currentMap"
+    ></satellite-view>
   </teleport>
   <skirmish-background />
   <div class="skirmish-view-root flex">
@@ -72,7 +47,7 @@ const addPlayer = () => {
     </div>
     <div class="skirmish-map-container flex">
       <div class="map-preview-and-options flex flex-col">
-        <map-preview :player-count="[1, 4]" :map-name="{ zh: '围困之都', en: 'SIEGE OF' }" />
+        <map-preview :map="state.currentMap" />
         <div class="game-options-container flex">
           <alpha-button background="/game/start.png" class="game-start-button">
             <div class="zh">开始游戏</div>
