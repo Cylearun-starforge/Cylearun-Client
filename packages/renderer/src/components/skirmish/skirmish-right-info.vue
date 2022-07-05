@@ -1,10 +1,18 @@
 <script lang="ts" setup>
 import AlphaButton from '@/components/alpha-button.vue';
+defineEmits({
+  click1(e: MouseEvent) {
+    return true;
+  },
+  click2(e: MouseEvent) {
+    return true;
+  },
+});
 </script>
 
 <template>
   <div class="skirmish-right-info-root flex flex-col">
-    <alpha-button background="/game/change_map_bg.png" class="change-map-button">
+    <alpha-button background="/game/change_map_bg.png" class="change-map-button" @click="e => $emit('click1', e)">
       <img src="/game/change_map.png" />
       <div class="content flex flex-col">
         <div class="en">CHANGE MAP</div>
@@ -19,7 +27,7 @@ import AlphaButton from '@/components/alpha-button.vue';
         <div class="mode-tag">标准对战[传统]</div>
       </div>
     </div>
-    <alpha-button background="/game/satellite_bg.png" class="satellite-button">
+    <alpha-button background="/game/satellite_bg.png" class="satellite-button" @click="e => $emit('click2', e)">
       <img src="/game/satellite.png" />
       <div class="content flex flex-col">
         <div class="zh">战场情报</div>

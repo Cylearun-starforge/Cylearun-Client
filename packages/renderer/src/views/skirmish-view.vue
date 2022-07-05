@@ -8,9 +8,16 @@ import MapPreview from '@/components/game/map-preview.vue';
 import AlphaButton from '@/components/alpha-button.vue';
 import GameOptions from '@/components/game/game-options.vue';
 import { useSkirmish } from '@/stores/skirmish';
+import SatelliteView from './map-preview-view.vue';
+import MapSelectView from './map-select-view.vue';
+import { reactive } from 'vue';
 
 const state = useSkirmish();
 state.$reset();
+const localState = reactive({
+  previewingMap: false,
+  changingMap: false,
+});
 
 state.players.push(
   {
@@ -52,6 +59,10 @@ const addPlayer = () => {
 };
 </script>
 <template>
+  <teleport to="body">
+    <map-select-view v-if="localState.changingMap" @close="localState.changingMap = false"></map-select-view>
+    <satellite-view v-if="localState.previewingMap" @close="localState.previewingMap = false"></satellite-view>
+  </teleport>
   <skirmish-background />
   <div class="skirmish-view-root flex">
     <div>
@@ -71,7 +82,7 @@ const addPlayer = () => {
           <game-options v-model:options="state.options" />
         </div>
       </div>
-      <skirmish-right-info />
+      <skirmish-right-info @click1="localState.changingMap = true" @click2="localState.previewingMap = true" />
     </div>
   </div>
   <back-button class="back-button" />

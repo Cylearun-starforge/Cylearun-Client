@@ -120,8 +120,8 @@ const updateField = <Key extends keyof GameOptions>(field: Key, value: GameOptio
 
 <style scoped>
 .game-options-root {
-  min-width: 422px;
-  width: 50%;
+  max-width: 500px;
+  width: 75%;
   padding: 4px;
   height: 236.8px;
   columns: 2;
