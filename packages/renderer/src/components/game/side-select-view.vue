@@ -181,6 +181,11 @@ const futureSidesB = ['republic', 'gemoor'] as const;
           <div class="en">RANDOM</div>
         </button>
 
+        <button class="flex flex-col" @click="commitSide('observer')">
+          <div class="zh">观察者</div>
+          <div class="en">OBSERVER</div>
+        </button>
+
         <button class="flex flex-col" @click="commitSide()">
           <div class="zh">选择</div>
           <div class="en">SELECT</div>
@@ -289,12 +294,11 @@ const futureSidesB = ['republic', 'gemoor'] as const;
 .desc-area {
   width: 100%;
   justify-content: space-evenly;
-  margin: -12px 40px;
+  margin: -20px 40px;
 }
 
 .tag-area {
   width: 35%;
-  height: 250px;
   background-image: url('/text_box.png');
   background-size: 100% 100%;
   padding: 20px;
@@ -310,7 +314,7 @@ const futureSidesB = ['republic', 'gemoor'] as const;
   grid-template-rows: repeat(2, 1fr);
   justify-items: center;
   align-items: center;
-  align-self: center;
+  align-self: flex-start;
 }
 
 .button-area {

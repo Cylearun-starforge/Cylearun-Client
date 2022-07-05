@@ -47,6 +47,10 @@ export const GameSideNames = {
     zh: '尤里',
     en: 'YURI',
   },
+  observer: {
+    zh: '观察者',
+    en: 'OBSERVER',
+  },
 } as const;
 
 export type GameSide = keyof typeof GameSideNames;
