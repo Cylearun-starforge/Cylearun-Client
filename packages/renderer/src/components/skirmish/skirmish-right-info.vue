@@ -8,6 +8,17 @@ defineEmits({
     return true;
   },
 });
+
+defineProps({
+  topTextZh: {
+    type: String,
+    required: true,
+  },
+  topTextEn: {
+    type: String,
+    required: true,
+  },
+});
 </script>
 
 <template>
@@ -15,8 +26,8 @@ defineEmits({
     <alpha-button background="/game/change_map_bg.png" class="change-map-button" @click="e => $emit('click1', e)">
       <img src="/game/change_map.png" />
       <div class="content flex flex-col">
-        <div class="en">CHANGE MAP</div>
-        <div class="zh">更换地图</div>
+        <div class="en">{{ topTextEn }}</div>
+        <div class="zh">{{ topTextZh }}</div>
       </div>
     </alpha-button>
     <div class="mode-tag-container flex flex-col">

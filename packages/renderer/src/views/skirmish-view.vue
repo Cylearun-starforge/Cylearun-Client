@@ -57,7 +57,12 @@ const addPlayer = () => {
           <game-options v-model:options="state.options" />
         </div>
       </div>
-      <skirmish-right-info @click1="localState.changingMap = true" @click2="localState.previewingMap = true" />
+      <skirmish-right-info
+        @click1="localState.changingMap = true"
+        top-text-zh="更换地图"
+        top-text-en="CHANGE MAP"
+        @click2="localState.previewingMap = true"
+      />
     </div>
   </div>
   <back-button class="back-button" />

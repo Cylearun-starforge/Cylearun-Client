@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { PropType } from 'vue';
 import { GameMap } from 'config/game/game-map';
+import { PropType } from 'vue';
 
 defineProps({
   map: {
@@ -8,12 +8,15 @@ defineProps({
     required: true,
   },
 });
+
+defineEmits({
+  select: null,
+});
 </script>
 
 <template>
-  <div class="map-preview-root">
-    <img class="preview-border" src="/game/map_preview_box.png" draggable="false" />
-    <img class="map-preview" :src="map.cover" draggable="false" />
+  <div class="map-preview-item-root" @click="$emit('select')">
+    <img :src="map.cover" />
     <div class="desc">
       <div class="en">{{ map.name.en }}</div>
       <div class="zh">{{ map.name.zh }}</div>
@@ -28,28 +31,26 @@ defineProps({
 </template>
 
 <style scoped>
-.map-preview-root {
-  width: 100%;
+.map-preview-item-root {
+  width: 320px;
+  height: 104px;
+  background-image: url('/game/map/map_border.png');
+  background-size: 100% 100%;
+  cursor: pointer;
 }
 
-.preview-border {
-  width: 100%;
-  object-fit: contain;
-  z-index: 10;
-}
-
-.map-preview {
-  position: absolute;
-  top: 0;
-  left: 0;
+.map-preview-item-root > img {
   width: 100%;
   height: 100%;
+  padding: 13px;
 }
 
 .desc {
   position: absolute;
   right: 30px;
-  bottom: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+
   text-align: right;
   --shadow-blur-color: 2px rgba(0, 0, 0, 0.8);
   text-shadow: 2px 0 var(--shadow-blur-color), -2px 0 var(--shadow-blur-color), 0 var(--shadow-blur-color),
@@ -70,8 +71,8 @@ defineProps({
 .player-count-box {
   position: absolute;
   width: 40%;
-  left: 16px;
-  top: 12px;
+  left: 11px;
+  top: 16px;
   background-image: linear-gradient(to right, rgba(3, 98, 161, 0.48) 0 35%, transparent);
   padding: 2px 0;
 }
@@ -81,15 +82,18 @@ defineProps({
   padding: 4px;
   background-image: linear-gradient(to right, rgba(3, 98, 161, 0.68) 0 35%, transparent);
   align-items: flex-end;
+  color: white;
 }
 
 .player-count-box div {
   font-family: BureauAgency;
-  font-size: 20px;
+  font-size: 16px;
+  letter-spacing: 2px;
 }
 
 .player-count-box .count {
-  font-size: 40px;
+  font-size: 26px;
   margin-right: 4px;
+  letter-spacing: normal;
 }
 </style>
