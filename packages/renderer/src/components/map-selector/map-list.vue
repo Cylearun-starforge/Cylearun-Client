@@ -4,14 +4,11 @@ import { GameModes } from 'config/game/game-options';
 import MapItem from './map-item.vue';
 import { onMounted, onUnmounted, reactive, ref } from 'vue';
 import { getElementPosition } from '@/util/getElementPosition';
-import { GameMap } from 'config/game/game-map';
-import { PropType } from 'vue';
+import { useGameMaps } from '@/stores/game-maps';
+
+const gameMaps = useGameMaps();
 
 defineProps({
-  maps: {
-    type: Array as PropType<GameMap[]>,
-    required: true,
-  },
   selectedIndex: {
     type: Number,
     required: true,
@@ -104,7 +101,7 @@ const onScroll = (e: WheelEvent) => {
         <div ref="mapViewRef">
           <div class="map-list-content" ref="mapListRef" :style="{ top: `-${state.scrollPercentage}%` }">
             <map-item
-              v-for="(map, i) in maps"
+              v-for="(map, i) in gameMaps.maps"
               :key="`${map.name.zh}-${map.playerLimit[1]}`"
               :map="map"
               @select="$emit('update:selectedIndex', i)"

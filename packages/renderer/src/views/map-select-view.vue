@@ -5,7 +5,6 @@ import { useSkirmish } from '@/stores/skirmish';
 import MapList from '@/components/map-selector/map-list.vue';
 
 const skirmish = useSkirmish();
-
 defineEmits({
   close: null,
 });
@@ -13,7 +12,7 @@ defineEmits({
 
 <template>
   <div class="map-select-view-root flex">
-    <map-list :maps="skirmish.maps" v-model:selected-index="skirmish.selectedMapIndex"></map-list>
+    <map-list v-model:selected-index="skirmish.selectedMapIndex"></map-list>
     <div class="map-select-preview flex">
       <div class="map-select-desc flex flex-col">
         <map-preview :map="skirmish.currentMap" />
