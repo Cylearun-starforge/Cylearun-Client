@@ -35,6 +35,7 @@ export default defineConfig({
   },
   define: {
     __DEV__: process.env.MODE !== 'production',
+    __BUILD__: process.env.MODE !== 'development',
   },
   plugins: [vue(), vueJsx(), DevtoolsTransformPlugin({ port: 8098, production: process.env.MODE === 'production' })],
   test: {

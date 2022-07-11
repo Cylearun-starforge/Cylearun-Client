@@ -27,6 +27,7 @@ export default defineConfig({
   },
   define: {
     __DEV__: process.env.MODE !== 'production',
+    __BUILD__: process.env.MODE !== 'development',
   },
   plugins: [],
 });

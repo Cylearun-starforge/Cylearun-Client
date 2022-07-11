@@ -18,7 +18,7 @@ export default defineConfig({
     sourcemap: 'inline',
     target: 'esnext',
     outDir: 'dist',
-    assetsDir: '.',
+    assetsDir: './assets',
     minify: process.env.MODE !== 'development',
     lib: {
       entry: 'src/index.ts',
@@ -34,5 +34,6 @@ export default defineConfig({
   },
   define: {
     __DEV__: process.env.MODE !== 'production',
+    __BUILD__: process.env.MODE !== 'development',
   },
 });

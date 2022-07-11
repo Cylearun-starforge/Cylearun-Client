@@ -20,6 +20,10 @@ export class MainWindow extends BrowserWindow {
   }
 
   load() {
-    this.loadURL('http://127.0.0.1:3000');
+    if (__BUILD__) {
+      this.loadFile('./renderer/index.html');
+    } else {
+      this.loadURL('http://127.0.0.1:3000');
+    }
   }
 }
