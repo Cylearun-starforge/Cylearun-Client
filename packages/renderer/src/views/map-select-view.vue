@@ -3,14 +3,21 @@ import RightInfo from '@/components/skirmish/skirmish-right-info.vue';
 import MapPreview from '@/components/game/map-preview.vue';
 import { useSkirmish } from '@/stores/skirmish';
 import MapList from '@/components/map-selector/map-list.vue';
+import MapPreviewDesc from '@/views/map-preview-view.vue';
+import { ref } from 'vue';
 
 const skirmish = useSkirmish();
 defineEmits({
   close: null,
 });
+
+const showPreview = ref(false);
 </script>
 
 <template>
+  <teleport to="body">
+    <map-preview-desc v-if="showPreview" :map="skirmish.currentMap" @close="showPreview = false" />
+  </teleport>
   <div class="map-select-view-root flex">
     <map-list v-model:selected-index="skirmish.selectedMapIndex"></map-list>
     <div class="map-select-preview flex">
@@ -28,6 +35,7 @@ defineEmits({
       </div>
       <right-info
         @click1="$emit('close')"
+        @click2="showPreview = true"
         top-text-zh="返回"
         top-text-en="BACK"
         style="background-color: rgba(0, 0, 0, 0.6)"
