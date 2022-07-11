@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import autoprefixer from 'autoprefixer';
 import { join } from 'path';
+import DevtoolsTransformPlugin from './scripts/vite-transform-html';
 
 const PACKAGE_ROOT = __dirname;
 
@@ -35,7 +36,7 @@ export default defineConfig({
   define: {
     __DEV__: process.env.MODE !== 'production',
   },
-  plugins: [vue(), vueJsx()],
+  plugins: [vue(), vueJsx(), DevtoolsTransformPlugin({ port: 8098, production: process.env.MODE === 'production' })],
   test: {
     environment: 'jsdom',
   },
