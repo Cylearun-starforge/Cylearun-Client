@@ -9,7 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../../.gitignore"
   },
   "dependencies": {
-    "electron": "latest"
+    "electron": "19.0.7"
   },
   "devDependencies": {
     "@types/node": "^16.11.36",

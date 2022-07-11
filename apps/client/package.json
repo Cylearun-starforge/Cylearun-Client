@@ -8,7 +8,7 @@
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../../.gitignore"
   },
   "dependencies": {
-    "electron": "latest",
+    "electron": "19.0.7",
     "preload": "workspace:*"
   },
   "devDependencies": {
