@@ -1,0 +1,10 @@
+{
+  "name": "cylearun-client",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "latest"
+  }
+}

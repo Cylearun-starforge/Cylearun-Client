@@ -12,16 +12,19 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,vue,md,css}\"",
     "test": "turbo run test",
-    "coverage": "turbo run coverage"
+    "coverage": "turbo run coverage",
+    "compose-build": "pnpm build && node scripts/copy-dist.mjs"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@rushstack/eslint-patch": "^1.1.0",
+    "@types/fs-extra": "^9.0.13",
     "c8": "^7.11.3",
     "dotenv-cli": "^5.1.0",
     "eslint": "^8.18.0",
     "eslint-config-custom": "workspace:*",
+    "fs-extra": "^10.1.0",
     "git-cz": "^4.9.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.2",

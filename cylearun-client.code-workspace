@@ -17,6 +17,10 @@
       "path": "packages/renderer"
     },
     {
+      "name": "client built",
+      "path": "apps/built"
+    },
+    {
       "name": "config",
       "path": "packages/config"
     },
