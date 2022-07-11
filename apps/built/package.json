@@ -2,7 +2,7 @@
   "name": "cylearun-client",
   "version": "0.0.0",
   "scripts": {
-    "start": "electron ."
+    "start": "electron code/index.cjs"
   },
   "dependencies": {
     "electron": "19.0.7"
