@@ -2,7 +2,7 @@ import { copy, remove } from 'fs-extra';
 
 const rendererDist = './packages/renderer/dist/';
 const preloadDist = './packages/preload/dist/';
-const targetDir = './apps/built/code/';
+const targetDir = './apps/built/';
 const clientDist = './apps/client/dist/';
 
 const copyDir = async (src, dest) => {
