@@ -5,6 +5,7 @@ import { computed, reactive } from 'vue';
 import DropdownSelector from './dropdown-selector';
 import SideSelectView from '@/components/game/side-select-view.vue';
 import { useSkirmish } from '@/stores/skirmish';
+import ImgP from '@/components/auto-image.vue';
 
 const skirmish = useSkirmish();
 
@@ -118,7 +119,7 @@ const sideImage = computed(() => {
     />
   </teleport>
   <div class="player-info-root">
-    <img
+    <img-p
       v-if="hasPlayer"
       :src="playerAvatar"
       class="player-avatar"
@@ -126,11 +127,11 @@ const sideImage = computed(() => {
       draggable="false"
     />
     <div v-else class="player-avatar" :style="{ backgroundImage: `url('${playerAvatarBox}')` }"></div>
-    <img v-if="player.type === 'bot'" src="/game/bot_tag.png" class="tag" style="left: 14px" draggable="false" />
-    <img v-if="hasPlayer" :src="playerTeamTag" class="tag" style="left: 210px" draggable="false" />
+    <img-p v-if="player.type === 'bot'" src="/game/bot_tag.png" class="tag" style="left: 14px" draggable="false" />
+    <img-p v-if="hasPlayer" :src="playerTeamTag" class="tag" style="left: 210px" draggable="false" />
     <div class="player-info-container flex">
       <div class="player-card">
-        <img v-if="hasPlayer" :src="playerCard" draggable="false" />
+        <img-p v-if="hasPlayer" :src="playerCard" draggable="false" />
         <div class="info zh">
           <div :class="`name ${!hasPlayer ? 'name-empty' : ' '}`">{{ playerName }}</div>
           <div v-if="player.type === 'human'">{{ player.info.group ?? '<无战队>' }}</div>
@@ -144,7 +145,7 @@ const sideImage = computed(() => {
         </div>
       </div>
       <div class="side-card" @click="state.openSideSelector = true">
-        <img :src="sideImage" draggable="false" />
+        <img-p :src="sideImage" draggable="false" />
         <div class="info">
           <div class="zh">{{ GameSideNames[player.info.side].zh }}</div>
           <div class="en">{{ GameSideNames[player.info.side].en }}</div>
@@ -159,7 +160,7 @@ const sideImage = computed(() => {
         </div>
       </div>
       <div class="level-box">
-        <img v-if="playerLevel !== null" :src="playerLevel" draggable="false" />
+        <img-p v-if="playerLevel !== null" :src="playerLevel" draggable="false" />
       </div>
     </div>
   </div>

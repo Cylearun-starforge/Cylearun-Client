@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
+
 const images = ['/home/info/A1.png', '/home/info/A2.png', '/home/info/A1.png', '/home/info/A2.png'];
 
 const imageNodes = images.map(image => {
@@ -35,7 +36,8 @@ const offset = computed(() => {
     <div class="mask">
       <div class="info-list" :style="{ transform: `translateX(-${offset}px)` }">
         <img
-          v-for="img in imageNodes"
+          v-for="(img, i) in imageNodes"
+          :key="i"
           class="info-img"
           :src="img.src"
           :ref="(e: HTMLImageElement) => img.ref.value = e"
@@ -43,7 +45,7 @@ const offset = computed(() => {
       </div>
       <img class="info-border" src="/home/info/border.png" draggable="false" />
       <div class="dots-box flex">
-        <div v-for="(_, i) in imageNodes" class="dot" @click="slideData = i"></div>
+        <div v-for="(_, i) in imageNodes" :key="i" class="dot" @click="slideData = i"></div>
       </div>
     </div>
   </div>

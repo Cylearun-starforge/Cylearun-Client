@@ -9,13 +9,16 @@ const props = defineProps({
   },
 });
 
+const imgSrc = computed(() => {
+  return __BUILD__ ? '.' + props.background : props.background;
+});
 const state = reactive({
   hover: false,
 });
 
 const buttonStyle = computed<CSSProperties>(() => ({
   cursor: state.hover ? 'pointer' : 'initial',
-  backgroundImage: `url("${props.background}")`,
+  backgroundImage: `url("${imgSrc.value}")`,
   backgroundColor: 'transparent',
   borderWidth: 0,
 }));
@@ -31,7 +34,7 @@ const onClick = (e: MouseEvent) => {
 };
 const image = new Image();
 watchEffect(() => {
-  image.src = props.background;
+  image.src = imgSrc.value;
 });
 image.onload = setAlpha;
 
