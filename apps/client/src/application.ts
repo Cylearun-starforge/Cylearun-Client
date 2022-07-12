@@ -3,8 +3,10 @@ import { MainWindow } from './main-window';
 import { join } from 'path';
 import { IpcInvokeImpl } from './ipc-invokes-impl';
 
-const preload = join(__dirname, '../../../packages/preload/dist/index.cjs');
-
+const preload = __BUILD__
+  ? join(__dirname, './preload/index.cjs')
+  : join(__dirname, '../../../packages/preload/dist/index.cjs');
+console.log('preload', preload);
 export class Application {
   static get raw() {
     return app;
