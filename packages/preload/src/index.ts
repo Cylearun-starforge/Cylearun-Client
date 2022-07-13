@@ -1,5 +1,6 @@
-import { contextBridge, ipcRenderer } from 'electron';
+import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 import { ClientIpcInvokes, IpcInvokeParameters } from './ipc-invokes';
+import { IpcEventToRenderer } from './ipc-events';
 
 function callMain<
   Channel extends keyof ClientIpcInvokes,
@@ -8,9 +9,24 @@ function callMain<
 >(channel: Channel, ...args: [...Args]): Return {
   return ipcRenderer.invoke(channel, ...args) as Return;
 }
+function onMain<Channel extends keyof IpcEventToRenderer>(
+  channel: Channel,
+  listener: (event: IpcRendererEvent, ...args: IpcEventToRenderer[Channel]) => void
+): void {
+  ipcRenderer.on(channel, listener as (event: IpcRendererEvent, ...args: any[]) => void);
+}
+
+function onceMain<Channel extends keyof IpcEventToRenderer>(
+  channel: Channel,
+  listener: (event: IpcRendererEvent, ...args: IpcEventToRenderer[Channel]) => void
+): void {
+  ipcRenderer.once(channel, listener as (event: IpcRendererEvent, ...args: any[]) => void);
+}
 
 const exposeObject = {
   callMain: callMain,
+  onMain: onMain,
+  onceMain: onceMain,
 } as const;
 
 Object.entries(exposeObject).forEach(([key, value]) => {

@@ -1,4 +1,5 @@
 import { IpcMainInvokeEvent } from 'electron';
+import { GameMap } from 'game/game-map';
 
 type IpcInvoke<Args extends any[], Return> = (event: IpcMainInvokeEvent, ...args: [...Args]) => Promise<Return>;
 
@@ -9,4 +10,5 @@ export type IpcInvokeParameters<T> = T extends IpcInvoke<infer Args, any> ? (Arg
  */
 export type ClientIpcInvokes = {
   closeApp: IpcInvoke<[], void>;
+  loadMaps: IpcInvoke<[], GameMap[]>;
 };

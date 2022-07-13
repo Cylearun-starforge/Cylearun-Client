@@ -1,4 +1,5 @@
 import { BrowserWindow } from 'electron';
+import { composeSender } from 'preload/src/ipc-events';
 
 export class MainWindow extends BrowserWindow {
   constructor(preload: string) {
@@ -26,4 +27,6 @@ export class MainWindow extends BrowserWindow {
       this.loadURL('http://127.0.0.1:3000');
     }
   }
+
+  sendEvent = composeSender(this.webContents.send.bind(this.webContents));
 }

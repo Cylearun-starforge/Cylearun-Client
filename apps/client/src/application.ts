@@ -2,12 +2,14 @@ import { app, Menu, ipcMain } from 'electron';
 import { MainWindow } from './main-window';
 import { join } from 'path';
 import { IpcInvokeImpl } from './ipc-invokes-impl';
-
+import { MapLoader } from './map-loader';
 const preload = __BUILD__
   ? join(__dirname, './preload/index.cjs')
   : join(__dirname, '../../../packages/preload/dist/index.cjs');
-console.log('preload', preload);
+
 export class Application {
+  private static _mainWindow: MainWindow;
+  public static mapLoader: MapLoader;
   static get raw() {
     return app;
   }
@@ -24,13 +26,20 @@ export class Application {
 
   static init() {
     Menu.setApplicationMenu(null);
-    return app.whenReady().then(() => {
+    Application.mapLoader = new MapLoader();
+    Application.mapLoader.loadMapsOnInit();
+    return app.whenReady().then(async () => {
       Application.checkPlatform();
       Application.registerIpcInvoke();
 
       const window = new MainWindow(preload);
+      Application._mainWindow = window;
+
       window.load();
-      window.webContents.toggleDevTools();
+      if (__DEV__) {
+        window.webContents.toggleDevTools();
+      }
+
       app.on('ready', () => {
         console.log('App is ready');
       });
