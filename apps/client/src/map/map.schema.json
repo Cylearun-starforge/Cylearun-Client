@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Cylearun client map.json schema",
+  "description": "A object describes a game map, these properties are only used for client, not the game",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number",
+      "const": 1
+    },
+    "name": {
+      "type": "object",
+      "description": "The name of the map",
+      "properties": {
+        "zh": {
+          "type": "string",
+          "description": "The name of the map in Chinese"
+        },
+        "en": {
+          "type": "string",
+          "description": "The name of the map in English"
+        }
+      },
+      "required": ["zh", "en"]
+    },
+    "description": {
+      "type": "array",
+      "description": "The description of the map, each item is a paragraph",
+      "items": {
+        "type": "string"
+      }
+    },
+    "cover": {
+      "type": "string",
+      "description": "The cover of the map"
+    },
+    "playerLimit": {
+      "type": "array",
+      "description": "The player limit of the map, the first item is the min player limit, the second item is the max player limit",
+      "items": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8,
+          "description": "The min player limit"
+        },
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8,
+          "description": "The max player limit"
+        }
+      ],
+      "maxItems": 2
+    },
+    "availableModes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "satellites": {
+      "type": "array",
+      "description": "The satellites images of the map",
+      "items": {
+        "type": "object",
+        "properties": {
+          "image": {
+            "type": "string",
+            "description": "Path to the satellite image"
+          },
+          "objects": {
+            "type": "array",
+            "description": "The objects on the satellite. Will be supported in next version",
+            "items": {
+              "type": "object"
+            }
+          }
+        },
+        "required": ["image", "objects"]
+      }
+    }
+  },
+  "required": ["version", "name", "description", "cover", "playerLimit", "availableModes", "satellites"]
+}
