@@ -27,4 +27,5 @@ export type GameMap = {
   playerLimit: [number, number]; // [min, max]
   availableModes: GameMode[];
   satellites: GameMapSatellite[];
+  description: string[];
 };

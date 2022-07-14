@@ -24,13 +24,7 @@ const showPreview = ref(false);
       <div class="map-select-desc flex flex-col">
         <map-preview :map="skirmish.currentMap" />
         <div class="map-desc">
-          “呜↗ ↗ ↗ ↗（战 术 前
-          摇）太好听了吧！你唱歌真的好好听啊，简直就是天籁！我刚才，听到你唱歌了（你刚才，唱歌了罢）。我们以后一起唱好不好？一起唱！一起做学园偶像！”<br />
-          “为什么要跑嘛？人家只是想和你一起做学园偶像而已呀！和我一起做学园偶像好不好嘛！”<br />
-          “你快点掐（亲）一下可可的脸啊！”<br />
-          “真爱，这是真爱啊！”<br />
-          “嘿，哟，切克闹，唐可可我最闪耀，煎饼果子来一套，坚持练习不迟到，动次打次药！”[4] “真的假的！”
-          “是雪（嗜血）！”<br />
+          <p v-for="text in skirmish.currentMap.description" :key="text">{{ text }}</p>
         </div>
       </div>
       <right-info
@@ -121,6 +115,9 @@ const showPreview = ref(false);
   padding: 28px;
   width: 100%;
   height: 100%;
+}
+
+.map-desc p {
   font-family: '汉仪细等线';
   font-size: 20px;
 }
