@@ -2,7 +2,7 @@ import { app, Menu, ipcMain } from 'electron';
 import { MainWindow } from './main-window';
 import { join } from 'path';
 import { IpcInvokeImpl } from './ipc-invokes-impl';
-import { MapLoader } from './map-loader';
+import { MapLoader } from './map/loader';
 const preload = __BUILD__
   ? join(__dirname, './preload/index.cjs')
   : join(__dirname, '../../../packages/preload/dist/index.cjs');

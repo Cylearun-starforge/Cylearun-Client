@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { Application } from './application';
+import { Application } from '../application';
 import { GameMap } from 'config/game/game-map';
 import { opendir, readFile } from 'fs/promises';
 import { existsSync } from 'fs';
