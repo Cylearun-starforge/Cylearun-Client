@@ -7,6 +7,7 @@ import { existsSync } from 'fs';
 export class MapLoader {
   public static Constants = {
     MapDir: 'maps/',
+    MetaFile: 'map.json',
   } as const;
 
   public loadedMaps: GameMap[] = [];
@@ -45,7 +46,7 @@ export class MapLoader {
   }
 
   async readMapFromDir(dir: string) {
-    const mapFile = join(dir, 'map.json');
+    const mapFile = join(dir, MapLoader.Constants.MetaFile);
     if (!existsSync(mapFile)) {
       return null;
     }
