@@ -3,6 +3,8 @@ import { MainWindow } from './main-window';
 import { join } from 'path';
 import { IpcInvokeImpl } from './ipc-invokes-impl';
 import { MapLoader } from './map/loader';
+import { createLogger } from 'preload/src/logger';
+
 const preload = __BUILD__
   ? join(__dirname, './preload/index.cjs')
   : join(__dirname, '../../../packages/preload/dist/index.cjs');
@@ -10,6 +12,7 @@ const preload = __BUILD__
 export class Application {
   private static _mainWindow: MainWindow;
   public static mapLoader: MapLoader;
+  public static logger: ReturnType<typeof createLogger>;
   static get raw() {
     return app;
   }
@@ -29,6 +32,7 @@ export class Application {
     Application.mapLoader = new MapLoader();
     Application.mapLoader.loadMapsOnInit();
     return app.whenReady().then(async () => {
+      this.logger = createLogger('main');
       Application.checkPlatform();
       Application.registerIpcInvoke();
 

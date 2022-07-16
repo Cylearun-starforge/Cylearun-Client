@@ -55,12 +55,14 @@ importers:
       config: workspace:*
       electron: 19.0.7
       electron-devtools-installer: ^3.2.0
+      electron-log: ^4.4.8
       eslint: ^8.18.0
       eslint-config-custom: workspace:*
       preload: workspace:*
     dependencies:
       ajv: 8.11.0
       electron: 19.0.7
+      electron-log: 4.4.8
       preload: link:../../packages/preload
     devDependencies:
       '@types/node': 16.11.41
@@ -90,10 +92,12 @@ importers:
       '@types/node': ^16.11.36
       config: workspace:*
       electron: 19.0.7
+      electron-log: ^4.4.8
       eslint: ^8.18.0
       eslint-config-custom: workspace:*
     dependencies:
       electron: 19.0.7
+      electron-log: 4.4.8
     devDependencies:
       '@types/node': 16.11.41
       config: link:../config
@@ -2439,6 +2443,10 @@ packages:
       tslib: 2.4.0
       unzip-crx-3: 0.2.0
     dev: true
+
+  /electron-log/4.4.8:
+    resolution: {integrity: sha512-QQ4GvrXO+HkgqqEOYbi+DHL7hj5JM+nHi/j+qrN9zeeXVKy8ZABgbu4CnG+BBqDZ2+tbeq9tUC4DZfIWFU5AZA==}
+    dev: false
 
   /electron-osx-sign/0.6.0:
     resolution: {integrity: sha512-+hiIEb2Xxk6eDKJ2FFlpofCnemCbjbT5jz+BKGpVBrRNT3kWTGs4DfNX6IzGwgi33hUcXF+kFs9JW+r6Wc1LRg==}
