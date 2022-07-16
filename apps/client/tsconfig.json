@@ -1,5 +1,8 @@
 {
   "extends": "config/client.json",
   "include": ["src/**/*.ts", "env.d.ts"],
-  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"],
+  "compilerOptions": {
+    "resolveJsonModule": true
+  }
 }

@@ -3,6 +3,8 @@ import { Application } from '../application';
 import { GameMap } from 'config/game/game-map';
 import { opendir, readFile } from 'fs/promises';
 import { existsSync } from 'fs';
+import mapSchema from './map.schema.json';
+import Validator, { ValidateFunction } from 'ajv';
 
 export class MapLoader {
   public static Constants = {
@@ -11,6 +13,7 @@ export class MapLoader {
   } as const;
 
   public loadedMaps: GameMap[] = [];
+  public validator: ValidateFunction<typeof mapSchema>;
 
   private _baseDir: string;
   private _readMapPromise: Promise<void> = new Promise(() => {
@@ -19,6 +22,7 @@ export class MapLoader {
 
   constructor() {
     this._baseDir = __BASE_REDIRECT__ ?? join(Application.raw.getAppPath(), '..');
+    this.validator = new Validator().compile(mapSchema);
   }
 
   get mapDir() {
@@ -66,7 +70,12 @@ export class MapLoader {
 
   public validateMapInfo(data: object) {
     // TODO: check everything
-    return this.validateMapName(data);
+    const valid = this.validator(data);
+    if (valid) {
+      return data;
+    }
+    console.log(this.validator.errors);
+    return null;
   }
 
   public validateMapName(data: Partial<GameMap>) {
