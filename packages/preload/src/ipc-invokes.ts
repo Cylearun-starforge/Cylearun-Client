@@ -11,4 +11,5 @@ export type IpcInvokeParameters<T> = T extends IpcInvoke<infer Args, any> ? (Arg
 export type ClientIpcInvokes = {
   closeApp: IpcInvoke<[], void>;
   loadMaps: IpcInvoke<[], GameMap[]>;
+  appPath: IpcInvoke<[], string>;
 };

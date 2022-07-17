@@ -3,7 +3,7 @@ import { MainWindow } from './main-window';
 import { join } from 'path';
 import { IpcInvokeImpl } from './ipc-invokes-impl';
 import { MapLoader } from './map/loader';
-import { createLogger } from 'preload/src/logger';
+import { createLogger } from 'logger';
 
 const preload = __BUILD__
   ? join(__dirname, './preload/index.cjs')
@@ -33,6 +33,7 @@ export class Application {
     Application.mapLoader.loadMapsOnInit();
     return app.whenReady().then(async () => {
       this.logger = createLogger('main');
+      console.log = this.logger.info;
       Application.checkPlatform();
       Application.registerIpcInvoke();
 

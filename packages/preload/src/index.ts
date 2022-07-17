@@ -1,7 +1,9 @@
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 import { ClientIpcInvokes, IpcInvokeParameters } from './ipc-invokes';
 import { IpcEventToRenderer } from './ipc-events';
-import { createLogger } from './logger';
+import { createLogger } from 'logger';
+import { join } from 'path';
+
 function callMain<
   Channel extends keyof ClientIpcInvokes,
   Args extends IpcInvokeParameters<ClientIpcInvokes[Channel]>,
@@ -23,15 +25,19 @@ function onceMain<Channel extends keyof IpcEventToRenderer>(
   ipcRenderer.once(channel, listener as (event: IpcRendererEvent, ...args: any[]) => void);
 }
 
+const logger = createLogger('renderer');
 const exposeObject = {
   callMain: callMain,
   onMain: onMain,
   onceMain: onceMain,
-  logger: createLogger('renderer'),
-} as const;
-
-Object.entries(exposeObject).forEach(([key, value]) => {
-  contextBridge.exposeInMainWorld(key, value);
+  logger,
+};
+callMain('appPath').then(path => {
+  logger.transports.file.resolvePath = () => join(path, 'logs/renderer.log');
+  console.log('try resolve', logger.transports.file.resolvePath({}));
+  Object.entries(exposeObject).forEach(([key, value]) => {
+    contextBridge.exposeInMainWorld(key, value);
+  });
 });
 
 export type PreloadExpose = typeof exposeObject;

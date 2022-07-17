@@ -1,14 +1,14 @@
 // https://github.com/modern-js-dev/electron-sprout/blob/main/packages/electron-log/src/index.ts
 import electronLog, { ElectronLog, Format } from 'electron-log';
-// import dayjs from 'dayjs';
+import dayjs from 'dayjs';
 
 const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 
 const formatLog: Format = logMsg => {
   const msgPrefix = `[${logMsg.level}] > `;
   const msgContent = logMsg.data.join('');
-  //   const dateContent = `[${dayjs(logMsg.date).format(DATE_FORMAT)}]`;
-  return msgPrefix + msgContent;
+  const dateContent = `[${dayjs(logMsg.date).format(DATE_FORMAT)}]`;
+  return dateContent + msgPrefix + msgContent;
 };
 
 const formatAllLogs = (log: ElectronLog) => {

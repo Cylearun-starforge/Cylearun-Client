@@ -9,8 +9,10 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../../.gitignore"
   },
   "dependencies": {
+    "dayjs": "^1.11.3",
     "electron": "19.0.7",
-    "electron-log": "^4.4.8"
+    "electron-log": "^4.4.8",
+    "logger": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^16.11.36",
