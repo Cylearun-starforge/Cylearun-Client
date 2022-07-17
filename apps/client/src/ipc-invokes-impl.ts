@@ -1,6 +1,6 @@
-import { join } from 'path';
 import { ClientIpcInvokes } from 'preload/src/ipc-invokes';
 import { Application } from './application';
+import { Paths } from './path';
 
 export const IpcInvokeImpl: ClientIpcInvokes = {
   closeApp: async () => {
@@ -10,7 +10,7 @@ export const IpcInvokeImpl: ClientIpcInvokes = {
     await Application.mapLoader.whenReady();
     return Application.mapLoader.loadedMaps;
   },
-  appPath: async () => {
-    return join(Application.raw.getAppPath(), '..');
+  combinePath: async (_event, paths: string[]) => {
+    return Paths.combine(paths as Array<Exclude<keyof typeof Paths, 'combine'>>);
   },
 };

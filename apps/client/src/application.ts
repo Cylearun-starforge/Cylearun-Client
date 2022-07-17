@@ -4,6 +4,7 @@ import { join } from 'path';
 import { IpcInvokeImpl } from './ipc-invokes-impl';
 import { MapLoader } from './map/loader';
 import { createLogger } from 'logger';
+import { Paths } from './path';
 
 const preload = __BUILD__
   ? join(__dirname, './preload/index.cjs')
@@ -27,13 +28,23 @@ export class Application {
     throw new Error("Can't initialize static class");
   }
 
+  static initLogger() {
+    Application.logger = createLogger('main');
+    Application.logger.transports.file.resolvePath = () => join(Paths.combine(['appPath', 'log']), 'client.log');
+    Application.logger.transports.file.level = __DEV__ ? 'silly' : 'warn';
+    console.log = Application.logger.log.bind(Application.logger);
+    console.warn = Application.logger.warn.bind(Application.logger);
+    console.error = Application.logger.error.bind(Application.logger);
+    console.debug = Application.logger.debug.bind(Application.logger);
+    console.info = Application.logger.info.bind(Application.logger);
+  }
+
   static init() {
     Menu.setApplicationMenu(null);
     Application.mapLoader = new MapLoader();
     Application.mapLoader.loadMapsOnInit();
     return app.whenReady().then(async () => {
-      this.logger = createLogger('main');
-      console.log = this.logger.info;
+      Application.initLogger();
       Application.checkPlatform();
       Application.registerIpcInvoke();
 

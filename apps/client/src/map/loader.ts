@@ -1,35 +1,31 @@
 import { join } from 'path';
-import { Application } from '../application';
 import { GameMap } from 'config/game/game-map';
 import { opendir, readFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import mapSchema from './map.schema.json';
 import Validator, { ValidateFunction } from 'ajv';
+import { Paths } from '../path';
 
 export class MapLoader {
-  public static Constants = {
-    MapDir: 'maps/',
-    MetaFile: 'map.json',
-  } as const;
+  public static MetaFile = 'map.json';
 
   public loadedMaps: GameMap[] = [];
   public validator: ValidateFunction<typeof mapSchema>;
 
-  private _baseDir: string;
   private _readMapPromise: Promise<void> = new Promise(() => {
     // We never call resolve, so this promise is always pending
   });
 
   constructor() {
-    this._baseDir = __BASE_REDIRECT__ ?? join(Application.raw.getAppPath(), '..');
     this.validator = new Validator().compile(mapSchema);
   }
 
   get mapDir() {
-    return join(this._baseDir, MapLoader.Constants.MapDir);
+    return Paths.combine(['appPath', 'map']);
   }
 
   async readMaps() {
+    console.log('MAP', Paths.appPath, this.mapDir);
     const dir = await opendir(this.mapDir);
     for await (const mapFolder of dir) {
       if (mapFolder.isDirectory()) {
@@ -50,7 +46,7 @@ export class MapLoader {
   }
 
   async readMapFromDir(dir: string) {
-    const mapFile = join(dir, MapLoader.Constants.MetaFile);
+    const mapFile = join(dir, MapLoader.MetaFile);
     if (!existsSync(mapFile)) {
       return null;
     }

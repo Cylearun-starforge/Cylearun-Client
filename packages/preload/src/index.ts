@@ -32,9 +32,9 @@ const exposeObject = {
   onceMain: onceMain,
   logger,
 };
-callMain('appPath').then(path => {
-  logger.transports.file.resolvePath = () => join(path, 'logs/renderer.log');
-  console.log('try resolve', logger.transports.file.resolvePath({}));
+
+callMain('combinePath', ['appPath', 'log']).then(path => {
+  logger.transports.file.resolvePath = () => join(path, 'renderer.log');
   Object.entries(exposeObject).forEach(([key, value]) => {
     contextBridge.exposeInMainWorld(key, value);
   });
