@@ -1,0 +1,8 @@
+{
+    "extends": "@cylearun/ts-config/config/tsconfig.json",
+    "include": [
+        "env.d.ts",
+        "consumer/**/*.ts",
+        "lib/**/*.ts"
+    ],
+}

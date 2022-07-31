@@ -1,0 +1,5 @@
+{
+  "extends": "@cylearun/ts-config/config/tsconfig.json",
+  "include": ["lib/**/*.ts", "env.d.ts", "lib/index.js"],
+  "exclude": ["vite.config.ts"]
+}

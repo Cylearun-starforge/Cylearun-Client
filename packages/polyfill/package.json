@@ -1,0 +1,22 @@
+{
+  "name": "@cylearun/polyfill",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "types": "lib/index.ts",
+  "exports": {
+    ".": {
+      "default": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./lib/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.16"
+  }
+}

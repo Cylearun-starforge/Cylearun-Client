@@ -1,0 +1,24 @@
+{
+  "name": "@cylearun/vite-config",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "module": "./dist/esm/index.js",
+  "main": "./dist/esm/index.js",
+  "types": "./lib/index.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./lib/index.ts",
+      "default": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "scripts": {
+    "test": "vitest",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}

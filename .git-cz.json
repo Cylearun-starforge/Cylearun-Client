@@ -1,4 +1,4 @@
 {
   "disableEmoji": true,
-  "scopes": ["prelaod", "client", "renderer", "*"]
+  "scopes": ["prelaod", "client", "renderer", "polyfill", "runtime", "dev-scripts", "game", "*"]
 }

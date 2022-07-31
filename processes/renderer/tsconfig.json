@@ -1,0 +1,16 @@
+{
+  "extends": "@cylearun/ts-config/config/tsconfig.web.json",
+  "compilerOptions": {
+    "types": ["vitest/globals"],
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "paths": {
+      "#preload": ["../preload/src/index"],
+      "@/*": ["../renderer/src/*"]
+    },
+    "composite": true,
+    "lib": ["ESNext", "dom", "dom.iterable"],
+    "rootDirs": [".", "@cylearun/polyfill"]
+  },
+  "include": [ "src/**/*.vue", "src/**/*.ts", "src/**/*.tsx", "env.d.ts"]
+}

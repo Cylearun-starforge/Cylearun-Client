@@ -1,0 +1,19 @@
+{
+  "name": "@cylearun/resources",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "type": "module",
+  "devDependencies": {
+    "commander": "^9.4.0",
+    "dotenv-cli": "^6.0.0"
+  },
+  "scripts": {
+    "test": "vitest",
+    "build": "cylearun pack -r . -dir dist"
+  },
+  "files": [
+    "dist",
+    "package.json"
+  ]
+}

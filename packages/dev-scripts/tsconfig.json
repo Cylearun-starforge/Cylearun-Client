@@ -1,0 +1,7 @@
+{
+  "extends": "@cylearun/ts-config/config/tsconfig.json",
+  "include": ["./src/**/*.ts", "env.d.ts"],
+  "compilerOptions": {
+    "types": ["node"]
+  }
+}

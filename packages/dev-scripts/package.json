@@ -1,0 +1,34 @@
+{
+  "name": "@cylearun/dev-scripts",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "cylearun": "bin/cylearun.js"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.5",
+    "@types/koa-send": "^4.1.3",
+    "@types/mkdirp": "^1.0.2",
+    "@types/mv": "^2.1.2",
+    "@types/rimraf": "^3.0.2"
+  },
+  "scripts": {
+    "test": "vitest",
+    "make": "dotenv -e env -- vite build",
+    "make:w": "dotenv -e env -- vite build --watch"
+  },
+  "dependencies": {
+    "asar": "^3.2.0",
+    "commander": "^9.4.0",
+    "dotenv-cli": "^6.0.0",
+    "glob": "^8.0.3",
+    "koa": "^2.13.4",
+    "koa-send": "^5.0.1",
+    "mkdirp": "^1.0.4",
+    "mv": "^2.1.1",
+    "rimraf": "^3.0.2",
+    "@vue/devtools": "^6.2.0"
+  }
+}

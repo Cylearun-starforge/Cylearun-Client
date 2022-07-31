@@ -1,0 +1,25 @@
+{
+  "name": "@cylearun/client-main",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build && electron --inspect-brk=9229 dist/index.cjs",
+    "build": "vite build",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../../.gitignore"
+  },
+  "dependencies": {
+    "ajv": "^8.11.0",
+    "electron": "19.0.7",
+    "@cylearun/preload": "workspace:*",
+    "@cylearun/runtime": "workspace:*",
+    "@cylearun/game": "workspace:*",
+    "dayjs": "^1.11.3",
+    "electron-log": "^4.4.8"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.36",
+    "@cylearun/eslint-config": "workspace:*"
+  }
+}

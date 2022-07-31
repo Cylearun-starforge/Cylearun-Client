@@ -1,0 +1,3 @@
+{
+  "extends": "@cylearun/ts-config/config/tsconfig.json"
+}

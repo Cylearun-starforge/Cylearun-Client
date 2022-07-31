@@ -11,7 +11,7 @@
     },
     "dev": {
       "cache": false,
-      "dependsOn": ["^dev"]
+      "dependsOn": ["^dev", "@cylearun/polyfill#build", "@cylearun/vite-config#build", "@cylearun/runtime#build"]
     },
     "test": {
       "dependsOn": ["^test"]
