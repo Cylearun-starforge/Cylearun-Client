@@ -1,0 +1,21 @@
+{
+  "name": "@cylearun/preload",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build",
+    "build": "vite build",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../../.gitignore"
+  },
+  "dependencies": {
+    "@cylearun/runtime": "workspace:*",
+    "@cylearun/game": "workspace:*",
+    "electron": "19.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.36",
+    "@cylearun/eslint-config": "workspace:*"
+  }
+}

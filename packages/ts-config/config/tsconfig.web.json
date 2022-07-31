@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "references": [
+    {
+      "path": "./tsconfig.json"
+    },
+    {
+      "path": "@vue/tsconfig/tsconfig.web.json"
+    }
+  ],
+  "compilerOptions": {
+    "composite": true,
+    "types": ["vitest/globals"],
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "lib": ["ESNext", "dom", "dom.iterable"]
+  }
+}

@@ -1,37 +1,36 @@
 {
   "folders": [
     {
-      "name": "root",
-      "path": "."
+      "path": "processes/client"
     },
     {
-      "name": "client main",
-      "path": "apps/client"
+      "path": "processes/renderer"
     },
     {
-      "name": "client preload",
-      "path": "packages/preload"
+      "path": "processes/preload"
     },
     {
-      "name": "client renderer",
-      "path": "packages/renderer"
+      "path": "packages/polyfill"
     },
     {
-      "name": "client built",
-      "path": "apps/built"
+      "path": "packages/runtime"
     },
     {
-      "name": "config",
-      "path": "packages/config"
+      "path": "packages/game"
     },
     {
-      "name": "eslint",
-      "path": "packages/eslint-config-custom"
+      "path": "packages/eslint"
     },
     {
-      "name": "logger",
-      "path": "packages/logger"
-    }
+      "path": "packages/ts-config"
+    },
+    {
+      "path": "packages/vite-config"
+    },
+    {
+      "path": ".",
+      "name": "Workspace"
+    },
   ],
   "settings": {
     "files.associations": {
@@ -77,6 +76,9 @@
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.formatOnSave": true,
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "cSpell.words": [
+      "cylearun",
+    ]
   }
 }

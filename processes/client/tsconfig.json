@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Main",
+  "extends": "@cylearun/ts-config/config/tsconfig.json",
+  "include": ["src/**/*.ts", "env.d.ts"],
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"],
+  "compilerOptions": {
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

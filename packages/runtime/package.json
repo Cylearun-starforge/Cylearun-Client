@@ -1,0 +1,22 @@
+{
+  "name": "@cylearun/runtime",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.cjs",
+  "types": "lib/index.ts",
+  "module": "dist/index.cjs",
+  "devDependencies": {
+    "electron": "19.0.7",
+    "@cylearun/game": "workspace:*"
+  },
+  "scripts": {
+    "test": "vitest",
+    "build": "vite build"
+  },
+  "files": [
+    "dist",
+    "lib/index.ts",
+    "package.json"
+  ]
+}

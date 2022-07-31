@@ -1,0 +1,33 @@
+{
+  "name": "@cylearun/renderer",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path ../../.gitignore",
+    "devtools": "vue-devtools"
+  },
+  "dependencies": {
+    "pinia": "^2.0.14",
+    "@cylearun/preload": "workspace:*",
+    "@cylearun/polyfill": "workspace:*",
+    "@cylearun/game": "workspace:*",
+    "@cylearun/runtime": "workspace:*",
+    "vue": "^3.2.36",
+    "vue-router": "^4.0.15",
+    "vueuc": "^0.4.45"
+  },
+  "devDependencies": {
+    "@types/jsdom": "latest",
+    "@vue/test-utils": "^2.0.0",
+    "@vitejs/plugin-vue": "3.0.1",
+    "@vitejs/plugin-vue-jsx": "2.0.0",
+    "@vue/tsconfig": "^0.1.3",
+    "autoprefixer": "^10.4.7",
+    "jsdom": "latest",
+    "vue-tsc": "^0.35.2"
+  }
+}
