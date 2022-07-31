@@ -31,6 +31,10 @@
     {
       "name": "logger",
       "path": "packages/logger"
+    },
+    {
+      "name": "vite",
+      "path": "packages/vite"
     }
   ],
   "settings": {

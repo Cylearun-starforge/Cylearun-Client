@@ -8,7 +8,7 @@ import { Paths } from './path';
 
 const preload = __BUILD__
   ? join(__dirname, './preload/index.cjs')
-  : join(__dirname, '../../../packages/preload/dist/index.cjs');
+  : join(__dirname, '../../../packages/preload/dist/index.js');
 
 export class Application {
   private static _mainWindow: MainWindow;

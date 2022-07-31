@@ -1,10 +1,9 @@
-import { defineConfig } from 'vitest/config';
-import vue from '@vitejs/plugin-vue';
-import vueJsx from '@vitejs/plugin-vue-jsx';
 import autoprefixer from 'autoprefixer';
 import { join } from 'path';
-import DevtoolsTransformPlugin from './scripts/vite-transform-html';
-
+import { defineConfig, ViteBuildMode } from 'vite';
+import VuePlugin from 'vite/lib/vue-plugin';
+import VueDevtoolsPlugin from 'vite/lib/vue-devtools-plugin';
+import VueJsxPlugin from 'vite/lib/vue-jsx-plugin';
 const PACKAGE_ROOT = __dirname;
 
 export default defineConfig({
@@ -37,7 +36,7 @@ export default defineConfig({
     __DEV__: process.env.MODE !== 'production',
     __BUILD__: process.env.MODE !== 'development',
   },
-  plugins: [vue(), vueJsx(), DevtoolsTransformPlugin({ port: 8098, production: process.env.MODE === 'production' })],
+  plugins: [VuePlugin(), VueJsxPlugin(), VueDevtoolsPlugin({ port: 8098, mode: process.env.MODE as ViteBuildMode })],
   test: {
     environment: 'jsdom',
   },

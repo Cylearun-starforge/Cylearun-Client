@@ -1,9 +1,6 @@
-// eslint-disable-next-line no-undef
-const childProcess = require('child_process');
-// eslint-disable-next-line no-undef
-const process = require('process');
+import { fork } from 'node:child_process';
 
-childProcess.fork('./node_modules/@vue/devtools/bin.js', {
+fork('./node_modules/@vue/devtools/bin.js', {
   detached: true,
 });
 

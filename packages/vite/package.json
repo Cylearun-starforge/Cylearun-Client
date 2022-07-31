@@ -1,0 +1,43 @@
+{
+  "name": "cylearun-vite",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "vitest": "0.19.1",
+    "vite": "3.0.4",
+    "@vitejs/plugin-vue": "3.0.1",
+    "@vitejs/plugin-vue-jsx": "2.0.0"
+  },
+  "bin": {
+    "vite": "./node_modules/vite/bin/vite.js",
+    "vitest": "./node_modules/vitest/vitest.mjs"
+  },
+  "module": "./lib/index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "type": "module",
+  "//TODO": "Compile TS code to JS, then reference the compiled code",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./lib/test": "./lib/vitest.ts",
+    "./lib/vue-plugin": {
+      "types": "./lib/vue-plugin.d.ts",
+      "default": "./lib/vue-plugin.js"
+    },
+    "./lib/vue-jsx-plugin": {
+      "types": "./lib/vue-jsx-plugin.d.ts",
+      "default": "./lib/vue-jsx-plugin.js"
+    },
+    "./lib/vue-devtools-plugin": {
+      "types": "./lib/vue-devtools-plugin.d.ts",
+      "default": "./lib/vue-devtools-plugin.js"
+    }
+  },
+  "scripts": {
+    "test": "vitest"
+  }
+}
