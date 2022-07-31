@@ -26,7 +26,7 @@
     },
     {
       "name": "eslint",
-      "path": "packages/eslint-config-custom"
+      "path": "packages/eslint"
     },
     {
       "name": "logger",

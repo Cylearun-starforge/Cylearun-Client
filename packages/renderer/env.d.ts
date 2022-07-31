@@ -6,7 +6,6 @@ import type { PreloadExpose } from 'preload/src';
 
 declare global {
   interface Window extends PreloadExpose {}
-
 }
 
 declare module '*.vue' {
