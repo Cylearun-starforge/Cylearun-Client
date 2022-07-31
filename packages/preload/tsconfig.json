@@ -1,5 +1,10 @@
 {
-  "extends": "config/preload.json",
+  "extends": "typescript/config/tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "baseUrl": ".",
+    "isolatedModules": false
+  },
   "include": ["src/**/*.ts", "env.d.ts"],
   "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }

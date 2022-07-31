@@ -1,8 +1,14 @@
 {
-  "extends": "config/client.json",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Main",
+  "extends": "typescript/config/tsconfig.json",
   "include": ["src/**/*.ts", "env.d.ts"],
   "exclude": ["**/*.spec.ts", "**/*.test.ts"],
   "compilerOptions": {
-    "resolveJsonModule": true
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
 }

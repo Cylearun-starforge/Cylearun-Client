@@ -1,9 +1,22 @@
 {
-  "extends": "config/renderer.json",
   "include": ["env.d.ts", "src/**/*.vue", "src/**/*.ts", "src/**/*.tsx", "types/**/*.d.ts", "../../types/**/*.d.ts"],
   "exclude": ["**/*.spec.ts", "**/*.test.ts"],
   "compilerOptions": {
-    "types": ["vitest/globals"],
-    "baseUrl": "."
-  }
+    "types": ["vite/vitest/globals"],
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "paths": {
+      "#preload": ["../preload/src/index"],
+      "@/*": ["../renderer/src/*"]
+    },
+    "lib": ["ESNext", "dom", "dom.iterable"]
+  },
+  "references": [
+    {
+      "path": "../typescript/config/tsconfig.json"
+    },
+    {
+      "path": "@vue/tsconfig/tsconfig.web.json"
+    }
+  ]
 }

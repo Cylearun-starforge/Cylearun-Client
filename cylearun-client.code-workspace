@@ -35,6 +35,10 @@
     {
       "name": "vite",
       "path": "packages/vite"
+    },
+    {
+      "name": "typescript",
+      "path": "packages/typescript"
     }
   ],
   "settings": {

@@ -1,0 +1,13 @@
+{
+  "name": "cylearun-ts",
+  "version": "0.1.0",
+  "bin": {
+    "tsc": "./node_modules/typescript/bin/tsc",
+    "tsserver": "./node_modules/typescript/bin/tsserver"
+  },
+  "main": "./node_modules/typescript/lib/typescript.js",
+  "typings": "./node_modules/typescript/lib/typescript.d.ts",
+  "dependencies": {
+    "typescript": "4.7.4"
+  }
+}
