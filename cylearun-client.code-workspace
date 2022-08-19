@@ -53,7 +53,10 @@
       "**/bower_components": true,
       "**/pnpm-lock.yaml": true
     },
-    "editor.rulers": [80, 120],
+    "editor.rulers": [
+      80,
+      120
+    ],
     "files.eol": "\n",
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
@@ -72,6 +75,8 @@
     },
     "[vue]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
-    }
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
   }
 }
