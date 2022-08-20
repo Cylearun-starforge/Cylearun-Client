@@ -10,6 +10,7 @@ const props = defineProps({
 });
 
 const imgSrc = computed(() => {
+  // eslint-disable-next-line no-undef
   return __BUILD__ ? '.' + props.background : props.background;
 });
 const state = reactive({

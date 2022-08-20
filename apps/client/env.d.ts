@@ -1,2 +1,2 @@
 /// <reference types="config/env" />
-declare var __BASE_REDIRECT__: ?string;
+declare let __BASE_REDIRECT__: ?string;
