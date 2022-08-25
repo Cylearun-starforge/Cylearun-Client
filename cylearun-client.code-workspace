@@ -19,6 +19,13 @@
       "path": "packages/game"
     },
     {
+      "path": "resources"
+    },
+    {
+      "name": "shell",
+      "path": "app"
+    },
+    {
       "path": "packages/eslint"
     },
     {
@@ -26,6 +33,9 @@
     },
     {
       "path": "packages/vite-config"
+    },
+    {
+      "path": "packages/dev-scripts"
     },
     {
       "path": ".",
