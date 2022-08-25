@@ -10,16 +10,16 @@ import BackButton from '@/components/back-button.vue';
     <div class="content-container">
       <div class="left-side">
         <div class="item">
-          <img class="raid-logo" src="/difficult-activity/raid/old_haunt_logo.png" alt="raid-logo" />
-          <img class="raid-text" src="/difficult-activity/raid/old_haunt.png" alt="raid-text" />
+          <img class="raid-logo" :src="rc('difficult-activity', 'raid/old_haunt_logo.png')" alt="raid-logo" />
+          <img class="raid-text" :src="rc('difficult-activity', 'raid/old_haunt.png')" alt="raid-text" />
         </div>
         <div class="item">
-          <img class="raid-logo" src="/difficult-activity/raid/sum_temple_logo.png" alt="raid-logo" />
-          <img class="raid-text" src="/difficult-activity/raid/sum_temple.png" alt="raid-text" />
+          <img class="raid-logo" :src="rc('difficult-activity', 'raid/sum_temple_logo.png')" alt="raid-logo" />
+          <img class="raid-text" :src="rc('difficult-activity', 'raid/sum_temple.png')" alt="raid-text" />
         </div>
         <div class="item">
-          <img class="raid-logo" src="/difficult-activity/raid/storm-logo.png" alt="raid-logo" />
-          <img class="raid-text" src="/difficult-activity/raid/storm.png" alt="raid-text" />
+          <img class="raid-logo" :src="rc('difficult-activity', 'raid/storm-logo.png')" alt="raid-logo" />
+          <img class="raid-text" :src="rc('difficult-activity', 'raid/storm.png')" alt="raid-text" />
         </div>
       </div>
       <div class="right-side">
