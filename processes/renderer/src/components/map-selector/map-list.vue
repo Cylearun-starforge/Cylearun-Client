@@ -113,7 +113,7 @@ const onScroll = (e: WheelEvent) => {
         <img
           class="button"
           ref="scrollButtonRef"
-          src="/game/scroll_button.png"
+          :src="rc('game', 'scroll_button.png')"
           draggable="false"
           @mousedown="startDrag"
           @mousemove="onDrag"
