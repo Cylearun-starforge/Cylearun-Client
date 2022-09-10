@@ -13,6 +13,7 @@ export default abstract class Controller {
 
   constructor(app: KoaApplication) {
     this.ctx = app.app.context;
+    app.controllers.push(this);
     this.getRoutes().forEach(route => {
       app.use(async (ctx, next) => {
         if (route.match(ctx.path)) {
