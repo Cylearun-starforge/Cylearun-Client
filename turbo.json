@@ -18,6 +18,9 @@
     },
     "coverage": {
       "dependsOn": ["^coverage"]
+    },
+    "@cylearun/polyfill#build": {
+      "cache": false
     }
   }
 }

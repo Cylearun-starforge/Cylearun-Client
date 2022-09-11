@@ -10,6 +10,6 @@
     "electron-log": "^4.4.8"
   },
   "scripts": {
-    "start": "electron shell/client.asar"
+    "start": "electron shell/client.asar/index.cjs"
   }
 }
