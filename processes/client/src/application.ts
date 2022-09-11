@@ -6,7 +6,9 @@ import { MapLoader } from './map/loader';
 import { Paths } from './path';
 import { createLogger } from './logger';
 
-const preload = define.__DEV__ ? join(__dirname, '../../preload/dist/index.cjs') : join(__dirname, '../preload.asar');
+const preload = define.__DEV__
+  ? join(__dirname, '../../preload/dist/index.cjs')
+  : join(__dirname, '../preload.asar/index.cjs');
 
 export class Application {
   private static _mainWindow: MainWindow;
