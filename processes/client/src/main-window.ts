@@ -13,6 +13,7 @@ export class MainWindow extends BrowserWindow {
       webPreferences: {
         contextIsolation: true,
         nodeIntegration: false,
+        webSecurity: define.__PROD__,
         preload,
       },
       icon: './assets/Cylearun.ico',

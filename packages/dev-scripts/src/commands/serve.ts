@@ -6,6 +6,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import send from 'koa-send';
 import { fork } from 'node:child_process';
+import devServer from '../server';
 
 export const ServerConfig = {
   port: 11451,
@@ -26,31 +27,9 @@ export function serveFile(path: string) {
   };
 }
 
-const RESOURCES_PREFIX = '/resources';
-
 export function start() {
-  const server = new koa();
-  server.listen(ServerConfig.port, ServerConfig.address);
+  devServer.app.listen(ServerConfig.port, ServerConfig.address);
   console.log(serve.hints.serving);
-  server.on('connection', () => {
-    console.log(serve.hints.serving);
-  });
-  console.log(serve.hints.serving);
-
-  server.use(async (context, next) => {
-    const isResources = context.path.startsWith(RESOURCES_PREFIX);
-    if (!isResources) {
-      context.status = 404;
-    } else {
-      const rcPath = join('./', context.path.slice(RESOURCES_PREFIX.length));
-      console.log('finding', rcPath);
-      await send(context, rcPath, { root: './resources' });
-    }
-  });
-
-  server.on('error', err => {
-    console.error(err);
-  });
 }
 
 export default function serve() {

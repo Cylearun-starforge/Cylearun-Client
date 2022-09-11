@@ -13,5 +13,6 @@ export default withDefaultConfig({
     rollupOptions: {
       external: [/node_modules/, /node:/],
     },
+    sourcemap: false,
   },
 });
