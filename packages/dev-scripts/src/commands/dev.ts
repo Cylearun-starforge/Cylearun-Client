@@ -4,6 +4,8 @@ import { execSync, exec } from 'node:child_process';
 import { startWithFork } from './serve';
 
 export type DevOptions = {
+  port?: string;
+  break: boolean;
   devTools: boolean;
 };
 
@@ -21,12 +23,17 @@ export default function dev(options: DevOptions) {
     startDevtools();
   }
   startWithFork();
+  const env: NodeJS.ProcessEnv = {
+    ...process.env,
+    MODE: 'dev',
+  };
+  if (options.port) {
+    env.ELECTRON_DEBUG_PORT = options.port;
+    env.ELECTRON_DEBUG_STOP_AT_ENTRY = options.break ? 'true' : 'false';
+  }
   execSync('pnpm dev', {
     stdio: 'inherit',
-    env: {
-      ...process.env,
-      MODE: 'dev',
-    },
+    env,
   });
 }
 

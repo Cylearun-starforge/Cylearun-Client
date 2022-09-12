@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { PropType } from 'vue';
-import { GameMap } from 'config/game/game-map';
+import { GameMap } from '@cylearun/game/lib/map';
 defineEmits({
   close: null,
 });
